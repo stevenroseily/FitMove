@@ -42,15 +42,16 @@
             border-bottom-right-radius: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        /* Removed @apply from here, classes applied directly in HTML for reliability */
-        /* Keeping these empty for now, but they won't be used if classes are direct */
-        .btn-primary-custom { /* Renamed to avoid confusion with direct classes */
-            /* This class is now primarily for reference or if you decide to re-enable @apply with a build step */
+        /* Enhanced Primary Button Style */
+        .btn-primary {
+            display: block; /* Ensure it takes full width and stacks */
+            @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95;
         }
-        .btn-secondary-custom { /* Renamed to avoid confusion with direct classes */
-            /* This class is now primarily for reference or if you decide to re-enable @apply with a build step */
+        /* Enhanced Secondary Button Style */
+        .btn-secondary {
+            display: block; /* Ensure it takes full width and stacks */
+            @apply bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95;
         }
-
         .card {
             @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200;
         }
@@ -205,46 +206,18 @@
         <!-- 4. Learning Module Section -->
         <section id="learning-module-section" class="section flex flex-col items-center p-6">
             <h2 class="text-2xl font-bold mb-6 text-gray-800">Learning Module</h2>
-            <p class="text-gray-700 mb-4">Explore the theories and proper techniques of athletics based on the ARCS model.</p>
+            <p class="text-gray-700 mb-4">Select a category to learn more:</p>
 
-            <!-- ARCS Model Tabs/Accordion -->
-            <div class="space-y-4 mb-6 w-full">
-                <!-- Attention -->
-                <div class="card p-4">
-                    <h3 class="font-bold text-lg text-blue-700 mb-2">Attention: Fascinating Facts!</h3>
-                    <p class="text-gray-700">Did you know? The fastest human ever recorded, Usain Bolt, reached a top speed of about 44.7 km/h (27.8 mph) during his 100-meter world record run!</p>
-                    <p class="text-gray-700 mt-2">Discover the excitement of athletics through engaging visuals and interesting tidbits.</p>
-                </div>
-
-                <!-- Relevance -->
-                <div class="card p-4">
-                    <h3 class="font-bold text-lg text-green-700 mb-2">Relevance: Why Athletics Matters</h3>
-                    <p class="text-gray-700">Athletics isn't just about winning races; it's about building endurance, discipline, and healthy habits for life. Learn how these skills apply beyond the track.</p>
-                    <p class="text-gray-700 mt-2">Understand the fundamental theories and rules for race walking and short-distance running. Check out these basic guidelines:</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-600">
-                        <li><strong>Race Walking:</strong> One foot must always be in contact with the ground. The supporting leg must be straightened from the moment of ground contact until the vertical upright position.</li>
-                        <li><strong>Short-Distance Running (Sprint):</strong> Explosive start, maintaining maximum speed, and a strong finish. Focus on arm drive and high knee lift.</li>
-                    </ul>
-                    <!-- Placeholder for embedded video/illustration -->
-                    <div class="mt-4 bg-gray-100 p-4 rounded-lg text-center text-gray-500">
-                        <i class="fas fa-video fa-2x mb-2"></i>
-                        <p>Video/Illustrations demonstrating techniques coming soon!</p>
-                    </div>
-                </div>
-
-                <!-- Confidence -->
-                <div class="card p-4">
-                    <h3 class="font-bold text-lg text-yellow-700 mb-2">Confidence: Master the Skills</h3>
-                    <p class="text-gray-700">Practice makes perfect! Our challenges are designed to help you gradually improve. You'll receive real-time feedback to help you build confidence in your abilities.</p>
-                </div>
-
-                <!-- Satisfaction -->
-                <div class="card p-4">
-                    <h3 class="font-bold text-lg text-red-700 mb-2">Satisfaction: Earn Your Rewards!</h3>
-                    <p class="text-gray-700">Completing challenges and achieving milestones will earn you awesome badges and help you climb the leaderboard. Feel the satisfaction of seeing your progress!</p>
-                </div>
+            <div id="learning-category-selection" class="flex flex-col space-y-4 w-full mb-6">
+                <button id="btnSelectSprintLearning" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-running mr-2"></i>Short Distance Running (Sprint)</button>
+                <button id="btnSelectRacewalkLearning" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-walking mr-2"></i>Race Walking</button>
             </div>
-            <button id="btnBackToHomeLearning" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+
+            <div id="learning-content" class="space-y-4 hidden w-full">
+                <!-- Content will be loaded here by JS -->
+            </div>
+
+            <button id="btnBackToHomeLearning" class="w-full mt-6 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
         </section>
 
         <!-- 5. Activity Challenge Section -->
@@ -400,7 +373,9 @@
             name: '',
             class: '',
             weight: 0,
-            badges: []
+            badges: [],
+            preAssessmentCompleted: false, // New flag
+            postAssessmentCompleted: false // New flag
         };
 
         // Current Challenge Data
@@ -409,7 +384,8 @@
             category: '',
             level: '',
             goalDistance: 0,
-            goalTime: 0
+            goalTime: 0,
+            goalSteps: 0 // New for racewalking
         };
 
         // Activity tracking variables
@@ -424,9 +400,9 @@
         const challengeConfigs = {
             racewalk: {
                 categories: {
-                    '1km': { name: '1 Kilometer Walk', goals: { rookie: 10 * 60, pro: 8 * 60, champion: 6 * 60 }, badges: { rookie: 'BeginnerWalker', pro: 'StrideMaster', champion: 'EnduranceGuru' } }, // time in seconds
-                    '2km': { name: '2 Kilometer Walk', goals: { rookie: 20 * 60, pro: 16 * 60, champion: 12 * 60 }, badges: { rookie: 'PacingPro', pro: 'DistanceDominator', champion: 'MarathonMavens' } },
-                    '5km': { name: '5 Kilometer Walk', goals: { rookie: 50 * 60, pro: 40 * 60, champion: 30 * 60 }, badges: { rookie: 'StaminaStarter', pro: 'ResilienceRunner', champion: 'UltraWalker' } }
+                    '1km': { name: '1 Kilometer Walk', goals: { rookie: 10 * 60, pro: 8 * 60, champion: 6 * 60 }, goalSteps: { rookie: 1200, pro: 1500, champion: 1800 }, badges: { rookie: 'BeginnerWalker', pro: 'StrideMaster', champion: 'EnduranceGuru' } }, // time in seconds, steps
+                    '2km': { name: '2 Kilometer Walk', goals: { rookie: 20 * 60, pro: 16 * 60, champion: 12 * 60 }, goalSteps: { rookie: 2400, pro: 3000, champion: 3600 }, badges: { rookie: 'PacingPro', pro: 'DistanceDominator', champion: 'MarathonMavens' } },
+                    '5km': { name: '5 Kilometer Walk', goals: { rookie: 50 * 60, pro: 40 * 60, champion: 30 * 60 }, goalSteps: { rookie: 6000, pro: 7500, champion: 9000 }, badges: { rookie: 'StaminaStarter', pro: 'ResilienceRunner', champion: 'UltraWalker' } }
                 },
                 caloriesPerKm: 60 // Approximate calories burned per km for walking (adjust based on user weight later)
             },
@@ -437,6 +413,67 @@
                     '200m': { name: '200 Meter Sprint', goals: { rookie: 40, pro: 30, champion: 25 }, badges: { rookie: 'WindSprinter', pro: 'PowerPacer', champion: 'SprintSultan' } }
                 },
                 caloriesPer100m: 10 // Approximate calories burned per 100m for sprinting
+            }
+        };
+
+        // Learning Module Content
+        const learningContent = {
+            sprint: {
+                attention: {
+                    title: "Attention: The Spark of Speed!",
+                    content: `Did you know that the explosive power in a sprint start can be compared to a rocket launch? Every muscle fiber works in harmony to propel you forward! Short-distance running is all about maximizing speed over a brief period.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Sprint+Start" // Placeholder image
+                },
+                relevance: {
+                    title: "Relevance: Why Sprinting Matters",
+                    content: `Sprinting isn't just for athletes; it builds leg strength, improves cardiovascular health, and boosts your metabolism. Understanding proper sprint technique helps prevent injuries and makes you more efficient in many sports and daily activities. Key elements include:
+                    <ul class="list-disc list-inside mt-2 text-gray-600">
+                        <li><strong>Explosive Start:</strong> Power from the blocks or standing start.</li>
+                        <li><strong>Acceleration Phase:</strong> Gradually rising posture, powerful arm and leg drive.</li>
+                        <li><strong>Maximum Velocity:</strong> Maintaining top speed with efficient form.</li>
+                        <li><strong>Finish:</strong> Leaning into the finish line.</li>
+                    </ul>
+                    `,
+                    video: "https://placehold.co/100x100/ADD8E6/000000?text=Sprint+Technique" // Placeholder video
+                },
+                confidence: {
+                    title: "Confidence: Mastering the Dash",
+                    content: `Practice drills like block starts, short accelerations, and form running will build your confidence. Focus on consistent effort and small improvements. Our challenges will guide you to gradually increase your speed and endurance, giving you real-time feedback to refine your technique.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Sprint+Drills" // Placeholder image
+                },
+                satisfaction: {
+                    title: "Satisfaction: The Thrill of the Finish!",
+                    content: `Feel the rush of achieving your sprint goals! Earning badges for faster times and seeing your name on the leaderboard will be incredibly rewarding. Every personal best is a testament to your dedication and hard work.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Sprint+Victory" // Placeholder image
+                }
+            },
+            racewalk: {
+                attention: {
+                    title: "Attention: The Art of Race Walking!",
+                    content: `Race walking is a unique athletic event that combines endurance with strict technique. It's often called the "power walking" of the Olympics! It's fascinating how athletes maintain ground contact while moving at incredible speeds.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Racewalk+Pose" // Placeholder image
+                },
+                relevance: {
+                    title: "Relevance: The Benefits of Race Walking",
+                    content: `Race walking is a low-impact, high-intensity exercise that's great for cardiovascular health and strengthens your core and legs. Understanding its rules helps you appreciate the discipline and skill involved. Key rules include:
+                    <ul class="list-disc list-inside mt-2 text-gray-600">
+                        <li><strong>Contact Rule:</strong> One foot must always be in contact with the ground.</li>
+                        <li><strong>Straight Leg Rule:</strong> The supporting leg must be straightened from the moment of ground contact until the vertical upright position.</li>
+                        <li><strong>Hip Rotation:</strong> Efficient hip rotation is key for speed and maintaining form.</li>
+                    </ul>
+                    `,
+                    video: "https://placehold.co/100x100/ADD8E6/000000?text=Racewalk+Rules" // Placeholder video
+                },
+                confidence: {
+                    title: "Confidence: Perfecting Your Stride",
+                    content: `Regular practice focusing on maintaining ground contact and leg straightening will build your confidence. Our step-tracking challenges provide immediate feedback on your technique, helping you improve your form and speed over time.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Racewalk+Drills" // Placeholder image
+                },
+                satisfaction: {
+                    title: "Satisfaction: Walk Your Way to Success!",
+                    content: `The satisfaction of completing a race walking challenge and seeing your steps and time improve is immense. Earn unique badges that celebrate your dedication to this challenging and rewarding sport.`,
+                    image: "https://placehold.co/100x100/ADD8E6/000000?text=Racewalk+Achievement" // Placeholder image
+                }
             }
         };
 
@@ -550,9 +587,12 @@
                 document.getElementById('displayUserName').textContent = userData.name;
                 document.getElementById('displayUserId').textContent = currentUserId;
             } else if (sectionId === 'pre-assessment-section') {
-                loadQuiz('pre-assessment-quiz');
+                handlePreAssessmentAccess();
             } else if (sectionId === 'post-assessment-section') {
-                loadQuiz('post-assessment-quiz');
+                handlePostAssessmentAccess();
+            } else if (sectionId === 'learning-module-section') {
+                document.getElementById('learning-category-selection').classList.remove('hidden');
+                document.getElementById('learning-content').classList.add('hidden'); // Hide content initially
             } else if (sectionId === 'leaderboard-section') {
                 loadLeaderboard();
             } else if (sectionId === 'my-results-section') {
@@ -644,6 +684,10 @@
             document.getElementById('btnBackToHomeLeaderboard').addEventListener('click', () => showSection('home-menu-section'));
             document.getElementById('btnBackToHomeMyResults').addEventListener('click', () => showSection('home-menu-section'));
 
+            // Learning Module Category Selection
+            document.getElementById('btnSelectSprintLearning').addEventListener('click', () => displayLearningContent('sprint'));
+            document.getElementById('btnSelectRacewalkLearning').addEventListener('click', () => displayLearningContent('racewalk'));
+
             // Activity Challenge Specific Buttons
             document.getElementById('btnSelectRacewalk').addEventListener('click', () => selectActivityType('racewalk'));
             document.getElementById('btnSelectSprint').addEventListener('click', () => selectActivityType('sprint'));
@@ -669,8 +713,13 @@
                 const docSnap = await getDoc(userDocRef);
                 if (docSnap.exists()) {
                     userData = docSnap.data();
+                    // Ensure new flags exist, set to false if not
+                    userData.preAssessmentCompleted = userData.preAssessmentCompleted || false;
+                    userData.postAssessmentCompleted = userData.postAssessmentCompleted || false;
                     showSection('home-menu-section'); // Show home if user data exists
                 } else {
+                    // New user, save initial data including assessment flags
+                    await setDoc(userDocRef, userData);
                     showSection('user-registration-section'); // Show registration if new user
                 }
             } catch (e) {
@@ -698,6 +747,10 @@
             const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
             const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
             try {
+                // Ensure preAssessmentCompleted and postAssessmentCompleted are initialized if not present
+                if (typeof userData.preAssessmentCompleted === 'undefined') userData.preAssessmentCompleted = false;
+                if (typeof userData.postAssessmentCompleted === 'undefined') userData.postAssessmentCompleted = false;
+
                 await setDoc(userDocRef, userData, { merge: true }); // Use merge to avoid overwriting badges
                 showToast("Your details have been saved!");
                 showSection('home-menu-section');
@@ -708,6 +761,55 @@
         });
 
         // --- Assessment Logic ---
+        async function handlePreAssessmentAccess() {
+            if (userData.preAssessmentCompleted) {
+                showModal("Assessment Already Completed", "You have already completed the Preliminary Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                return;
+            }
+            showModal(
+                "Start Preliminary Assessment?",
+                "Would you like to take the Preliminary Assessment now? You can only take it once.",
+                [
+                    { text: "Yes, Start", class: "btn-primary", handler: () => {
+                        document.getElementById('pre-assessment-section').style.display = 'flex'; // Show section after confirm
+                        loadQuiz('pre-assessment-quiz');
+                    }},
+                    { text: "No, Go Back", class: "btn-secondary", handler: () => showSection('home-menu-section') }
+                ]
+            );
+        }
+
+        async function handlePostAssessmentAccess() {
+            if (userData.postAssessmentCompleted) {
+                showModal("Assessment Already Completed", "You have already completed the Post-Activity Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                return;
+            }
+
+            // Check if user has completed at least one activity challenge
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const challengesCollectionRef = collection(db, `artifacts/${appId}/public/data/challenges`);
+            const q = query(challengesCollectionRef, where('userId', '==', currentUserId));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                showModal("No Challenges Completed", "You must complete at least one Activity Challenge before taking the Post-Activity Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                return;
+            }
+
+            showModal(
+                "Start Post-Activity Assessment?",
+                "Would you like to take the Post-Activity Assessment now? You can only take it once.",
+                [
+                    { text: "Yes, Start", class: "btn-primary", handler: () => {
+                        document.getElementById('post-assessment-section').style.display = 'flex'; // Show section after confirm
+                        loadQuiz('post-assessment-quiz');
+                    }},
+                    { text: "No, Go Back", class: "btn-secondary", handler: () => showSection('home-menu-section') }
+                ]
+            );
+        }
+
+
         function loadQuiz(quizContainerId) {
             const quizContainer = document.getElementById(quizContainerId);
             quizContainer.innerHTML = ''; // Clear previous questions
@@ -730,7 +832,7 @@
             });
         }
 
-        function submitAssessment(quizContainerId) {
+        async function submitAssessment(quizContainerId) {
             let score = 0;
             let totalQuestions = quizQuestions.length;
 
@@ -741,15 +843,85 @@
                 }
             });
 
-            showModal(
-                "Assessment Complete!",
-                `You scored ${score} out of ${totalQuestions}.`,
-                [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]
-            );
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
+
+            try {
+                if (quizContainerId === 'pre-assessment-quiz') {
+                    userData.preAssessmentCompleted = true;
+                    userData.preAssessmentScore = score;
+                    await updateDoc(userDocRef, { preAssessmentCompleted: true, preAssessmentScore: score });
+                    showModal(
+                        "Preliminary Assessment Complete!",
+                        `You scored ${score} out of ${totalQuestions}. Your score has been recorded.`,
+                        [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]
+                    );
+                } else if (quizContainerId === 'post-assessment-quiz') {
+                    userData.postAssessmentCompleted = true;
+                    userData.postAssessmentScore = score;
+                    await updateDoc(userDocRef, { postAssessmentCompleted: true, postAssessmentScore: score });
+                     showModal(
+                        "Post-Activity Assessment Complete!",
+                        `You scored ${score} out of ${totalQuestions}. Your score has been recorded.`,
+                        [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]
+                    );
+                }
+                showToast("Assessment score saved!");
+            } catch (e) {
+                console.error("Error saving assessment score:", e);
+                showToast("Error saving assessment score. Please try again.", 5000);
+            }
         }
 
         document.getElementById('submitPreAssessment').addEventListener('click', () => submitAssessment('pre-assessment-quiz'));
         document.getElementById('submitPostAssessment').addEventListener('click', () => submitAssessment('post-assessment-quiz'));
+
+        // --- Learning Module Logic ---
+        function displayLearningContent(category) {
+            document.getElementById('learning-category-selection').classList.add('hidden');
+            document.getElementById('learning-content').classList.remove('hidden');
+
+            const contentDiv = document.getElementById('learning-content');
+            contentDiv.innerHTML = ''; // Clear previous content
+
+            const categoryContent = learningContent[category];
+
+            // Attention
+            contentDiv.innerHTML += `
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-blue-700 mb-2">${categoryContent.attention.title}</h3>
+                    <p class="text-gray-700">${categoryContent.attention.content}</p>
+                    ${categoryContent.attention.image ? `<img src="${categoryContent.attention.image}" alt="Attention Image" class="mx-auto mt-4 rounded-lg shadow-sm">` : ''}
+                </div>
+            `;
+
+            // Relevance
+            contentDiv.innerHTML += `
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-green-700 mb-2">${categoryContent.relevance.title}</h3>
+                    <p class="text-gray-700">${categoryContent.relevance.content}</p>
+                    ${categoryContent.relevance.video ? `<div class="mt-4 bg-gray-100 p-4 rounded-lg text-center text-gray-500"><i class="fas fa-video fa-2x mb-2"></i><p>Video/Illustrations demonstrating techniques coming soon!</p></div>` : ''}
+                </div>
+            `;
+
+            // Confidence
+            contentDiv.innerHTML += `
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-yellow-700 mb-2">${categoryContent.confidence.title}</h3>
+                    <p class="text-gray-700">${categoryContent.confidence.content}</p>
+                    ${categoryContent.confidence.image ? `<img src="${categoryContent.confidence.image}" alt="Confidence Image" class="mx-auto mt-4 rounded-lg shadow-sm">` : ''}
+                </div>
+            `;
+
+            // Satisfaction
+            contentDiv.innerHTML += `
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-red-700 mb-2">${categoryContent.satisfaction.title}</h3>
+                    <p class="text-gray-700">${categoryContent.satisfaction.content}</p>
+                    ${categoryContent.satisfaction.image ? `<img src="${categoryContent.satisfaction.image}" alt="Satisfaction Image" class="mx-auto mt-4 rounded-lg shadow-sm">` : ''}
+                </div>
+            `;
+        }
 
         // --- Activity Challenge Logic ---
         function selectActivityType(type) {
@@ -787,9 +959,16 @@
             currentChallenge.level = levelKey;
             currentChallenge.goalTime = config.goals[levelKey];
             currentChallenge.goalDistance = parseFloat(categoryKey.match(/\d+(\.\d+)?/)[0]); // e.g., "100m" -> 100, "1km" -> 1
+            currentChallenge.goalSteps = config.goalSteps ? config.goalSteps[levelKey] : 0; // Set goalSteps for racewalk
 
             document.getElementById('active-challenge-title').textContent = `${config.name} (${levelKey.charAt(0).toUpperCase() + levelKey.slice(1)})`;
-            document.getElementById('challengeGoal').textContent = formatTime(currentChallenge.goalTime);
+            
+            let goalText = `Time: ${formatTime(currentChallenge.goalTime)}`;
+            if (currentChallenge.activityType === 'racewalk') {
+                goalText += ` & Steps: ${currentChallenge.goalSteps}`;
+            }
+            document.getElementById('challengeGoal').textContent = goalText;
+
 
             if (currentChallenge.activityType === 'racewalk') {
                 document.getElementById('stepsDisplayContainer').classList.remove('hidden');
@@ -920,7 +1099,17 @@
             caloriesBurned = Math.round(caloriesBurned); // Round to whole number
 
             // Check if goal was met (duration <= goalTime)
-            const goalMet = finalDurationSeconds <= currentChallenge.goalTime;
+            let goalMet = false;
+            if (currentChallenge.activityType === 'racewalk') {
+                // For racewalk, both time and steps must be met
+                const timeMet = finalDurationSeconds <= currentChallenge.goalTime;
+                const stepsMet = totalSteps >= currentChallenge.goalSteps;
+                goalMet = timeMet && stepsMet;
+            } else {
+                // For sprint, only time needs to be met
+                goalMet = finalDurationSeconds <= currentChallenge.goalTime;
+            }
+
             let badgeEarned = null;
 
             if (goalMet) {
@@ -960,7 +1149,7 @@
             }
 
             // Display results
-            document.getElementById('resultStatus').textContent = goalMet ? 'Challenge Completed Successfully!' : 'Challenge Not Met This Time!';
+            document.getElementById('resultStatus').textContent = goalMet ? 'Challenge Achieved Successfully!' : 'Challenge Not Achieved This Time!';
             document.getElementById('resultStatus').classList.toggle('text-green-600', goalMet);
             document.getElementById('resultStatus').classList.toggle('text-red-600', !goalMet);
 
@@ -1114,8 +1303,8 @@
                         <p class="text-md">Time: <span class="font-semibold text-blue-600">${formatTime(result.duration)}</span></p>
                         ${result.activityType === 'racewalk' ? `<p class="text-md">Steps: <span class="font-semibold text-green-600">${result.steps}</span></p>` : ''}
                         <p class="text-md">Calories Burned: <span class="font-semibold text-red-600">${result.caloriesBurned} kcal</span></p>
-                        <p class="text-md ${result.goalMet ? 'text-green-700' : 'text-red-700'}">Status: ${result.goalMet ? 'Goal Met!' : 'Goal Not Met'}</p>
-                        ${result.badgeEarned ? `<p class="text-md text-purple-700">Badge: <span class="font-semibold">${result.badgeEarned}</span></p>` : ''}
+                        <p class="text-md ${result.goalMet ? 'text-green-700' : 'text-red-700'}">Status: ${result.goalMet ? 'Goal Achieved!' : 'Goal Not Achieved'}</p>
+                        ${result.badgeEarned ? `<p class="text-md text-purple-700">Badge: <span class="font-semibold">${result.badgeEarned}</span> <img src="https://placehold.co/50x50/A020F0/FFFFFF?text=${result.badgeEarned.replace(/ /g, '%20')}" alt="Badge" class="inline-block ml-2 align-middle rounded-full"></p>` : ''}
                         <p class="text-xs text-gray-500 mt-2">Completed on: ${new Date(result.timestamp.toMillis()).toLocaleString()}</p>
                     `;
                     myResultsList.appendChild(resultCard);
