@@ -119,6 +119,12 @@
     </style>
 </head>
 <body>
+    <!-- Temporary Tailwind CSS Test -->
+    <div class="bg-green-500 text-white p-2 text-center text-xs" id="tailwind-test">
+        Tailwind CSS is loading...
+    </div>
+    <!-- End Temporary Tailwind CSS Test -->
+
     <div class="container">
         <header class="header">
             FitMove
@@ -558,13 +564,13 @@
         window.onload = async () => {
             // Placeholder Firebase config for local testing. REPLACE WITH YOUR ACTUAL FIREBASE CONFIG!
             const yourActualFirebaseConfig = {
-            apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
-			  authDomain: "fitmove-ca108.firebaseapp.com",
-			  projectId: "fitmove-ca108",
-			  storageBucket: "fitmove-ca108.firebasestorage.app",
-			  messagingSenderId: "705963366416",
-			  appId: "1:705963366416:web:f9d534fa8504e6f85e5295",
-			  measurementId: "G-8MWB4NKV6R"
+                apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
+				  authDomain: "fitmove-ca108.firebaseapp.com",
+				  projectId: "fitmove-ca108",
+				  storageBucket: "fitmove-ca108.firebasestorage.app",
+				  messagingSenderId: "705963366416",
+				  appId: "1:705963366416:web:f9d534fa8504e6f85e5295",
+				  measurementId: "G-8MWB4NKV6R"
             };
 
             // Assign to the global firebaseConfig variable
@@ -599,6 +605,23 @@
                     }
                 }
             });
+
+            // Check if Tailwind is loaded (optional, for debugging)
+            const tailwindTest = document.getElementById('tailwind-test');
+            if (tailwindTest) {
+                const computedStyle = getComputedStyle(tailwindTest);
+                // Check for the exact computed color of bg-green-500
+                if (computedStyle.backgroundColor === 'rgb(34, 197, 94)') {
+                    console.log("Tailwind CSS appears to be loaded correctly.");
+                    tailwindTest.textContent = "Tailwind CSS loaded correctly!";
+                    tailwindTest.classList.add('bg-green-600'); // Darken for confirmation
+                } else {
+                    console.error("Tailwind CSS might not be loading correctly.");
+                    tailwindTest.textContent = "Tailwind CSS NOT loaded correctly. Check CDN or network.";
+                    tailwindTest.classList.add('bg-red-600'); // Indicate error
+                }
+            }
+
 
             // --- Attach Event Listeners for Navigation Buttons ---
             // Home Menu Buttons
