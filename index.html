@@ -165,12 +165,12 @@
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">Hello, <span id="displayUserName"></span>!</h2>
                 <p class="text-gray-600 mb-8">What would you like to do today?</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button class="btn-primary" onclick="showSection('pre-assessment-section')"><i class="fas fa-question-circle mr-2"></i>Preliminary Assessment</button>
-                    <button class="btn-primary" onclick="showSection('learning-module-section')"><i class="fas fa-book-open mr-2"></i>Learning Module</button>
-                    <button class="btn-primary" onclick="showSection('activity-challenge-section')"><i class="fas fa-running mr-2"></i>Activity Challenge</button>
-                    <button class="btn-primary" onclick="showSection('leaderboard-section')"><i class="fas fa-trophy mr-2"></i>Leaderboard</button>
-                    <button class="btn-secondary" onclick="showSection('post-assessment-section')"><i class="fas fa-clipboard-check mr-2"></i>Post-Activity Assessment</button>
-                    <button class="btn-secondary" onclick="showSection('my-results-section')"><i class="fas fa-chart-line mr-2"></i>My Results</button>
+                    <button id="btnPreAssessment" class="btn-primary"><i class="fas fa-question-circle mr-2"></i>Preliminary Assessment</button>
+                    <button id="btnLearningModule" class="btn-primary"><i class="fas fa-book-open mr-2"></i>Learning Module</button>
+                    <button id="btnActivityChallenge" class="btn-primary"><i class="fas fa-running mr-2"></i>Activity Challenge</button>
+                    <button id="btnLeaderboard" class="btn-primary"><i class="fas fa-trophy mr-2"></i>Leaderboard</button>
+                    <button id="btnPostAssessment" class="btn-secondary"><i class="fas fa-clipboard-check mr-2"></i>Post-Activity Assessment</button>
+                    <button id="btnMyResults" class="btn-secondary"><i class="fas fa-chart-line mr-2"></i>My Results</button>
                 </div>
                 <div class="mt-8 text-sm text-gray-500">
                     Your User ID: <span id="displayUserId" class="font-mono text-xs"></span>
@@ -189,7 +189,7 @@
                 </div>
                 <button id="submitPreAssessment" class="btn-primary w-full mt-6">Submit Assessment</button>
             </div>
-            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomePre" class="btn-secondary w-full mt-2">Back to Home</button>
         </section>
 
         <!-- 4. Learning Module Section -->
@@ -234,7 +234,7 @@
                     <p class="text-gray-700">Completing challenges and achieving milestones will earn you awesome badges and help you climb the leaderboard. Feel the satisfaction of seeing your progress!</p>
                 </div>
             </div>
-            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomeLearning" class="btn-secondary w-full mt-2">Back to Home</button>
         </section>
 
         <!-- 5. Activity Challenge Section -->
@@ -243,8 +243,8 @@
             <div class="card mb-6">
                 <p class="text-gray-700 mb-4">Choose your challenge type:</p>
                 <div class="flex flex-col space-y-4">
-                    <button class="btn-primary" onclick="selectActivityType('racewalk')"><i class="fas fa-walking mr-2"></i>Race Walking</button>
-                    <button class="btn-primary" onclick="selectActivityType('sprint')"><i class="fas fa-running mr-2"></i>Sprinting</button>
+                    <button id="btnSelectRacewalk" class="btn-primary"><i class="fas fa-walking mr-2"></i>Race Walking</button>
+                    <button id="btnSelectSprint" class="btn-primary"><i class="fas fa-running mr-2"></i>Sprinting</button>
                 </div>
             </div>
 
@@ -270,8 +270,8 @@
                     <p>Pro: Challenging goal, requires good effort.</p>
                     <p>Champion: Elite goal, for top performers.</p>
                 </div>
-                <button class="btn-primary w-full" onclick="startChallengeSetup()">Start Challenge</button>
-                <button class="btn-secondary w-full mt-2" onclick="cancelChallengeSelection()">Back</button>
+                <button id="btnStartChallengeSetup" class="btn-primary w-full">Start Challenge</button>
+                <button id="btnCancelChallengeSelection" class="btn-secondary w-full mt-2">Back</button>
             </div>
 
             <!-- Challenge Active Screen -->
@@ -283,7 +283,7 @@
                 <div id="permission-request" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-md mb-4 hidden">
                     <p class="font-bold">Important:</p>
                     <p class="text-sm">To enable step tracking on iOS, please tap the button below to allow motion and orientation access.</p>
-                    <button class="btn-primary mt-2" onclick="requestDeviceMotionPermission()">Enable Motion Sensors</button>
+                    <button id="btnRequestDeviceMotionPermission" class="btn-primary mt-2">Enable Motion Sensors</button>
                 </div>
 
                 <div class="flex items-center justify-center space-x-4 mb-6">
@@ -300,7 +300,7 @@
                 <button id="startActivityBtn" class="btn-primary w-full mb-2"><i class="fas fa-play mr-2"></i>Start Activity</button>
                 <button id="stopActivityBtn" class="btn-secondary w-full hidden"><i class="fas fa-stop mr-2"></i>Stop Activity</button>
             </div>
-            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomeActivity" class="btn-secondary w-full mt-2">Back to Home</button>
         </section>
 
         <!-- 6. Result Page Section -->
@@ -322,8 +322,8 @@
                     <p class="text-lg font-semibold" id="badgeName"></p>
                 </div>
             </div>
-            <button class="btn-primary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
-            <button class="btn-secondary w-full mt-2" onclick="showSection('leaderboard-section')">View Leaderboard</button>
+            <button id="btnBackToHomeResult" class="btn-primary w-full">Back to Home</button>
+            <button id="btnViewLeaderboardFromResult" class="btn-secondary w-full mt-2">View Leaderboard</button>
         </section>
 
         <!-- 7. Post-Activity Assessment Section -->
@@ -336,7 +336,7 @@
                 </div>
                 <button id="submitPostAssessment" class="btn-primary w-full mt-6">Submit Assessment</button>
             </div>
-            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomePost" class="btn-secondary w-full mt-2">Back to Home</button>
         </section>
 
         <!-- 8. Leaderboard Section -->
@@ -344,7 +344,7 @@
             <h2 class="text-2xl font-bold mb-6 text-gray-800">Leaderboard</h2>
             <div class="mb-4">
                 <label for="leaderboardActivityType" class="block text-sm font-medium text-gray-700">Filter by Activity:</label>
-                <select id="leaderboardActivityType" class="w-full" onchange="loadLeaderboard()">
+                <select id="leaderboardActivityType" class="w-full">
                     <option value="all">All Activities</option>
                     <option value="racewalk">Race Walking</option>
                     <option value="sprint">Sprinting</option>
@@ -356,7 +356,7 @@
                     <!-- Leaderboard entries will be loaded here by JS -->
                 </div>
             </div>
-            <button class="btn-secondary w-full mt-6" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomeLeaderboard" class="btn-secondary w-full mt-6">Back to Home</button>
         </section>
 
         <!-- 9. My Results Section (Optional, but good for tracking personal progress) -->
@@ -368,7 +368,7 @@
                     <!-- User's own results will be loaded here by JS -->
                 </div>
             </div>
-            <button class="btn-secondary w-full mt-6" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button id="btnBackToHomeMyResults" class="btn-secondary w-full mt-6">Back to Home</button>
         </section>
     </div>
 
@@ -556,7 +556,7 @@
         window.onload = async () => {
             // Placeholder Firebase config for local testing. REPLACE WITH YOUR ACTUAL FIREBASE CONFIG!
             const yourActualFirebaseConfig = {
-				apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
+                apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
 				  authDomain: "fitmove-ca108.firebaseapp.com",
 				  projectId: "fitmove-ca108",
 				  storageBucket: "fitmove-ca108.firebasestorage.app",
@@ -597,7 +597,35 @@
                     }
                 }
             });
-        };
+
+            // --- Attach Event Listeners for Navigation Buttons ---
+            // Home Menu Buttons
+            document.getElementById('btnPreAssessment').addEventListener('click', () => showSection('pre-assessment-section'));
+            document.getElementById('btnLearningModule').addEventListener('click', () => showSection('learning-module-section'));
+            document.getElementById('btnActivityChallenge').addEventListener('click', () => showSection('activity-challenge-section'));
+            document.getElementById('btnLeaderboard').addEventListener('click', () => showSection('leaderboard-section'));
+            document.getElementById('btnPostAssessment').addEventListener('click', () => showSection('post-assessment-section'));
+            document.getElementById('btnMyResults').addEventListener('click', () => showSection('my-results-section'));
+
+            // Back to Home Buttons
+            document.getElementById('btnBackToHomePre').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomeLearning').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomeActivity').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomeResult').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomePost').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomeLeaderboard').addEventListener('click', () => showSection('home-menu-section'));
+            document.getElementById('btnBackToHomeMyResults').addEventListener('click', () => showSection('home-menu-section'));
+
+            // Activity Challenge Specific Buttons
+            document.getElementById('btnSelectRacewalk').addEventListener('click', () => selectActivityType('racewalk'));
+            document.getElementById('btnSelectSprint').addEventListener('click', () => selectActivityType('sprint'));
+            document.getElementById('btnStartChallengeSetup').addEventListener('click', () => startChallengeSetup());
+            document.getElementById('btnCancelChallengeSelection').addEventListener('click', () => cancelChallengeSelection());
+            document.getElementById('btnRequestDeviceMotionPermission').addEventListener('click', () => requestDeviceMotionPermission());
+            document.getElementById('leaderboardActivityType').addEventListener('change', () => loadLeaderboard());
+            document.getElementById('btnViewLeaderboardFromResult').addEventListener('click', () => showSection('leaderboard-section'));
+
+        }; // End of window.onload
 
         // --- User Data Management ---
         async function loadUserData() {
