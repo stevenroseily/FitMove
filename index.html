@@ -42,16 +42,16 @@
             border-bottom-right-radius: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        /* Enhanced Primary Button Style */
-        .btn-primary {
+        /* Removed @apply from here, classes applied directly in HTML for reliability */
+        /* These custom classes are no longer used if Tailwind classes are applied directly to buttons */
+        /* .btn-primary { } */
+        /* .btn-secondary { } */
+
+        .base-button-styles {
             display: block; /* Ensure it takes full width and stacks */
-            @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95;
+            @apply font-semibold py-3 px-6 rounded-lg shadow-lg border-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-opacity-75 active:scale-95;
         }
-        /* Enhanced Secondary Button Style */
-        .btn-secondary {
-            display: block; /* Ensure it takes full width and stacks */
-            @apply bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95;
-        }
+
         .card {
             @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200;
         }
@@ -164,7 +164,7 @@
                         <label for="userWeight" class="block text-sm font-medium text-gray-700">Body Weight (kg)</label>
                         <input type="number" id="userWeight" name="userWeight" placeholder="e.g., 50" min="20" max="200" required>
                     </div>
-                    <button type="submit" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95">Start Your Journey!</button>
+                    <button type="submit" class="base-button-styles bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-blue-800 focus:ring-blue-500">Start Your Journey!</button>
                 </form>
             </div>
         </section>
@@ -176,12 +176,12 @@
                 <p class="text-gray-600 mb-8">What would you like to do today?</p>
                 <!-- Ensure this div correctly applies flex-col on small screens -->
                 <div class="flex flex-col gap-4 w-full">
-                    <button id="btnPreAssessment" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-question-circle mr-2"></i>Preliminary Assessment</button>
-                    <button id="btnLearningModule" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-book-open mr-2"></i>Learning Module</button>
-                    <button id="btnActivityChallenge" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-running mr-2"></i>Activity Challenge</button>
-                    <button id="btnLeaderboard" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-trophy mr-2"></i>Leaderboard</button>
-                    <button id="btnPostAssessment" class="bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-clipboard-check mr-2"></i>Post-Activity Assessment</button>
-                    <button id="btnMyResults" class="bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-chart-line mr-2"></i>My Results</button>
+                    <button id="btnPreAssessment" class="base-button-styles bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white border-cyan-800 focus:ring-cyan-500"><i class="fas fa-question-circle mr-2"></i>Preliminary Assessment</button>
+                    <button id="btnLearningModule" class="base-button-styles bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white border-green-800 focus:ring-green-500"><i class="fas fa-book-open mr-2"></i>Learning Module</button>
+                    <button id="btnActivityChallenge" class="base-button-styles bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-orange-800 focus:ring-orange-500"><i class="fas fa-running mr-2"></i>Activity Challenge</button>
+                    <button id="btnLeaderboard" class="base-button-styles bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white border-yellow-800 focus:ring-yellow-500"><i class="fas fa-trophy mr-2"></i>Leaderboard</button>
+                    <button id="btnPostAssessment" class="base-button-styles bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-purple-800 focus:ring-purple-500"><i class="fas fa-clipboard-check mr-2"></i>Post-Activity Assessment</button>
+                    <button id="btnMyResults" class="base-button-styles bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white border-teal-800 focus:ring-teal-500"><i class="fas fa-chart-line mr-2"></i>My Results</button>
                 </div>
                 <div class="mt-8 text-sm text-gray-500">
                     Your User ID: <span id="displayUserId" class="font-mono text-xs"></span>
@@ -198,9 +198,9 @@
                 <div id="pre-assessment-quiz" class="space-y-4">
                     <!-- Questions will be loaded here by JS -->
                 </div>
-                <button id="submitPreAssessment" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95">Submit Assessment</button>
+                <button id="submitPreAssessment" class="base-button-styles bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500">Submit Assessment</button>
             </div>
-            <button id="btnBackToHomePre" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomePre" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-2">Back to Home</button>
         </section>
 
         <!-- 4. Learning Module Section -->
@@ -209,15 +209,15 @@
             <p class="text-gray-700 mb-4">Select a category to learn more:</p>
 
             <div id="learning-category-selection" class="flex flex-col space-y-4 w-full mb-6">
-                <button id="btnSelectSprintLearning" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-running mr-2"></i>Short Distance Running (Sprint)</button>
-                <button id="btnSelectRacewalkLearning" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-walking mr-2"></i>Race Walking</button>
+                <button id="btnSelectSprintLearning" class="base-button-styles bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white border-indigo-800 focus:ring-indigo-500"><i class="fas fa-running mr-2"></i>Short Distance Running (Sprint)</button>
+                <button id="btnSelectRacewalkLearning" class="base-button-styles bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-blue-800 focus:ring-blue-500"><i class="fas fa-walking mr-2"></i>Race Walking</button>
             </div>
 
             <div id="learning-content" class="space-y-4 hidden w-full">
                 <!-- Content will be loaded here by JS -->
             </div>
 
-            <button id="btnBackToHomeLearning" class="w-full mt-6 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomeLearning" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-6">Back to Home</button>
         </section>
 
         <!-- 5. Activity Challenge Section -->
@@ -226,8 +226,8 @@
             <div class="card mb-6 w-full">
                 <p class="text-gray-700 mb-4">Choose your challenge type:</p>
                 <div class="flex flex-col space-y-4">
-                    <button id="btnSelectRacewalk" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-walking mr-2"></i>Race Walking</button>
-                    <button id="btnSelectSprint" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-running mr-2"></i>Sprinting</button>
+                    <button id="btnSelectRacewalk" class="base-button-styles bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-blue-800 focus:ring-blue-500"><i class="fas fa-walking mr-2"></i>Race Walking</button>
+                    <button id="btnSelectSprint" class="base-button-styles bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white border-indigo-800 focus:ring-indigo-500"><i class="fas fa-running mr-2"></i>Sprinting</button>
                 </div>
             </div>
 
@@ -253,8 +253,8 @@
                     <p>Pro: Challenging goal, requires good effort.</p>
                     <p>Champion: Elite goal, for top performers.</p>
                 </div>
-                <button id="btnStartChallengeSetup" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95">Start Challenge</button>
-                <button id="btnCancelChallengeSelection" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back</button>
+                <button id="btnStartChallengeSetup" class="base-button-styles bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500">Start Challenge</button>
+                <button id="btnCancelChallengeSelection" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-2">Back</button>
             </div>
 
             <!-- Challenge Active Screen -->
@@ -266,7 +266,7 @@
                 <div id="permission-request" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-md mb-4 hidden">
                     <p class="font-bold">Important:</p>
                     <p class="text-sm">To enable step tracking on iOS, please tap the button below to allow motion and orientation access.</p>
-                    <button id="btnRequestDeviceMotionPermission" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95 mt-2">Enable Motion Sensors</button>
+                    <button id="btnRequestDeviceMotionPermission" class="base-button-styles bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-blue-800 focus:ring-blue-500 mt-2">Enable Motion Sensors</button>
                 </div>
 
                 <div class="flex items-center justify-center space-x-4 mb-6">
@@ -280,10 +280,10 @@
                     </div>
                 </div>
 
-                <button id="startActivityBtn" class="w-full mb-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-play mr-2"></i>Start Activity</button>
-                <button id="stopActivityBtn" class="w-full hidden bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95"><i class="fas fa-stop mr-2"></i>Stop Activity</button>
+                <button id="startActivityBtn" class="base-button-styles bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500 mb-2"><i class="fas fa-play mr-2"></i>Start Activity</button>
+                <button id="stopActivityBtn" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 hidden"><i class="fas fa-stop mr-2"></i>Stop Activity</button>
             </div>
-            <button id="btnBackToHomeActivity" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomeActivity" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-2">Back to Home</button>
         </section>
 
         <!-- 6. Result Page Section -->
@@ -305,8 +305,8 @@
                     <p class="text-lg font-semibold" id="badgeName"></p>
                 </div>
             </div>
-            <button id="btnBackToHomeResult" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
-            <button id="btnViewLeaderboardFromResult" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">View Leaderboard</button>
+            <button id="btnBackToHomeResult" class="base-button-styles bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500">Back to Home</button>
+            <button id="btnViewLeaderboardFromResult" class="base-button-styles bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-blue-800 focus:ring-blue-500 mt-2">View Leaderboard</button>
         </section>
 
         <!-- 7. Post-Activity Assessment Section -->
@@ -317,9 +317,9 @@
                 <div id="post-assessment-quiz" class="space-y-4">
                     <!-- Questions will be loaded here by JS -->
                 </div>
-                <button id="submitPostAssessment" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95">Submit Assessment</button>
+                <button id="submitPostAssessment" class="base-button-styles bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500">Submit Assessment</button>
             </div>
-            <button id="btnBackToHomePost" class="w-full mt-2 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomePost" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-2">Back to Home</button>
         </section>
 
         <!-- 8. Leaderboard Section -->
@@ -339,7 +339,7 @@
                     <!-- Leaderboard entries will be loaded here by JS -->
                 </div>
             </div>
-            <button id="btnBackToHomeLeaderboard" class="w-full mt-6 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomeLeaderboard" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-6">Back to Home</button>
         </section>
 
         <!-- 9. My Results Section (Optional, but good for tracking personal progress) -->
@@ -351,7 +351,7 @@
                     <!-- User's own results will be loaded here by JS -->
                 </div>
             </div>
-            <button id="btnBackToHomeMyResults" class="w-full mt-6 bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95">Back to Home</button>
+            <button id="btnBackToHomeMyResults" class="base-button-styles bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500 mt-6">Back to Home</button>
         </section>
     </div>
 
@@ -527,7 +527,8 @@
                 const button = document.createElement('button');
                 button.textContent = btn.text;
                 // Apply Tailwind classes directly here for modal buttons too
-                button.className = btn.class === 'btn-primary' ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-4 rounded-lg shadow-lg border-2 border-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 active:scale-95' : 'bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md border-2 border-gray-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 active:scale-95';
+                // Using base-button-styles for common properties, then specific colors
+                button.className = `base-button-styles ${btn.class === 'btn-primary' ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white border-green-800 focus:ring-green-500' : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-red-800 focus:ring-red-500'}`;
                 button.onclick = () => {
                     modal.style.display = 'none';
                     if (btn.handler) {
@@ -763,7 +764,7 @@
         // --- Assessment Logic ---
         async function handlePreAssessmentAccess() {
             if (userData.preAssessmentCompleted) {
-                showModal("Assessment Already Completed", "You have already completed the Preliminary Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                showModal("Assessment Already Completed", "You have already completed the Preliminary Assessment.", [{text: "OK", class: "btn-confirm", handler: () => showSection('home-menu-section')}]);
                 return;
             }
             showModal(
@@ -781,7 +782,7 @@
 
         async function handlePostAssessmentAccess() {
             if (userData.postAssessmentCompleted) {
-                showModal("Assessment Already Completed", "You have already completed the Post-Activity Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                showModal("Assessment Already Completed", "You have already completed the Post-Activity Assessment.", [{text: "OK", class: "btn-confirm", handler: () => showSection('home-menu-section')}]);
                 return;
             }
 
@@ -792,7 +793,7 @@
             const querySnapshot = await getDocs(q);
 
             if (querySnapshot.empty) {
-                showModal("No Challenges Completed", "You must complete at least one Activity Challenge before taking the Post-Activity Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                showModal("No Challenges Completed", "You must complete at least one Activity Challenge before taking the Post-Activity Assessment.", [{text: "OK", class: "btn-confirm", handler: () => showSection('home-menu-section')}]);
                 return;
             }
 
@@ -1302,7 +1303,7 @@
                         <p class="text-md">Level: <span class="font-semibold">${result.level.charAt(0).toUpperCase() + result.level.slice(1)}</span></p>
                         <p class="text-md">Time: <span class="font-semibold text-blue-600">${formatTime(result.duration)}</span></p>
                         ${result.activityType === 'racewalk' ? `<p class="text-md">Steps: <span class="font-semibold text-green-600">${result.steps}</span></p>` : ''}
-                        <p class="text-md">Calories Burned: <span class="font-semibold text-red-600">${result.caloriesBurned} kcal</span></p>
+                        <p class="text-md">Calories Burned: <span class="font-semibold text-red-600"> ${result.caloriesBurned} kcal</span></p>
                         <p class="text-md ${result.goalMet ? 'text-green-700' : 'text-red-700'}">Status: ${result.goalMet ? 'Goal Achieved!' : 'Goal Not Achieved'}</p>
                         ${result.badgeEarned ? `<p class="text-md text-purple-700">Badge: <span class="font-semibold">${result.badgeEarned}</span> <img src="https://placehold.co/50x50/A020F0/FFFFFF?text=${result.badgeEarned.replace(/ /g, '%20')}" alt="Badge" class="inline-block ml-2 align-middle rounded-full"></p>` : ''}
                         <p class="text-xs text-gray-500 mt-2">Completed on: ${new Date(result.timestamp.toMillis()).toLocaleString()}</p>
