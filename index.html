@@ -1,89 +1,1073 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.9.1/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.9.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.9.1/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMove - Learn Athletics!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
         }
-      });
+        .container {
+            max-width: 420px; /* Mobile-first approach, similar to phone width */
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative; /* For absolute positioning of toast/modals */
+        }
+        .section {
+            display: none; /* All sections hidden by default, shown via JS */
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto; /* Enable scrolling for content */
+        }
+        .header {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75;
+        }
+        .btn-secondary {
+            @apply bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-sm transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75;
+        }
+        .card {
+            @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200;
+        }
+        input[type="text"], input[type="number"], select {
+            @apply mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+        }
+        .toast-message {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .toast-message.show {
+            opacity: 1;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90%;
+        }
+        .animated-badge {
+            animation: bounceIn 0.8s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .meter {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px; /* Height of the progress bar */
+        }
+        .meter-fill {
+            height: 100%;
+            background-color: #4CAF50; /* Green fill */
+            width: 0%;
+            transition: width 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            FitMove
+        </header>
+
+        <!-- Toast Message for Notifications -->
+        <div id="toast" class="toast-message"></div>
+
+        <!-- Generic Modal for Confirmations/Alerts -->
+        <div id="genericModal" class="modal">
+            <div class="modal-content">
+                <h3 id="modalTitle" class="text-xl font-bold mb-4"></h3>
+                <p id="modalMessage" class="mb-6"></p>
+                <div id="modalButtons" class="flex justify-center space-x-4">
+                    <!-- Buttons will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. User Registration/Login Section -->
+        <section id="user-registration-section" class="section flex flex-col justify-center items-center p-6">
+            <div class="card w-full">
+                <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Welcome to FitMove!</h2>
+                <p class="text-center text-gray-600 mb-8">Please enter your details to get started.</p>
+                <form id="user-details-form" class="space-y-4">
+                    <div>
+                        <label for="userName" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="userClass" class="block text-sm font-medium text-gray-700">Class</label>
+                        <input type="text" id="userClass" name="userClass" placeholder="e.g., 7A, VIII-B" required>
+                    </div>
+                    <div>
+                        <label for="userWeight" class="block text-sm font-medium text-gray-700">Body Weight (kg)</label>
+                        <input type="number" id="userWeight" name="userWeight" placeholder="e.g., 50" min="20" max="200" required>
+                    </div>
+                    <button type="submit" class="btn-primary w-full mt-6">Start Your Journey!</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2. Home Menu Section -->
+        <section id="home-menu-section" class="section flex flex-col items-center justify-center p-6 text-center">
+            <div class="card w-full">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Hello, <span id="displayUserName"></span>!</h2>
+                <p class="text-gray-600 mb-8">What would you like to do today?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button class="btn-primary" onclick="showSection('pre-assessment-section')"><i class="fas fa-question-circle mr-2"></i>Preliminary Assessment</button>
+                    <button class="btn-primary" onclick="showSection('learning-module-section')"><i class="fas fa-book-open mr-2"></i>Learning Module</button>
+                    <button class="btn-primary" onclick="showSection('activity-challenge-section')"><i class="fas fa-running mr-2"></i>Activity Challenge</button>
+                    <button class="btn-primary" onclick="showSection('leaderboard-section')"><i class="fas fa-trophy mr-2"></i>Leaderboard</button>
+                    <button class="btn-secondary" onclick="showSection('post-assessment-section')"><i class="fas fa-clipboard-check mr-2"></i>Post-Activity Assessment</button>
+                    <button class="btn-secondary" onclick="showSection('my-results-section')"><i class="fas fa-chart-line mr-2"></i>My Results</button>
+                </div>
+                <div class="mt-8 text-sm text-gray-500">
+                    Your User ID: <span id="displayUserId" class="font-mono text-xs"></span>
+                    <button onclick="copyUserId()" class="ml-2 text-blue-500 hover:text-blue-700"><i class="far fa-copy"></i> Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Preliminary Assessment Section -->
+        <section id="pre-assessment-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Preliminary Assessment</h2>
+            <div class="card mb-6">
+                <p class="text-gray-700 mb-4">Test your knowledge before diving in!</p>
+                <div id="pre-assessment-quiz" class="space-y-4">
+                    <!-- Questions will be loaded here by JS -->
+                </div>
+                <button id="submitPreAssessment" class="btn-primary w-full mt-6">Submit Assessment</button>
+            </div>
+            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+
+        <!-- 4. Learning Module Section -->
+        <section id="learning-module-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Learning Module</h2>
+            <p class="text-gray-700 mb-4">Explore the theories and proper techniques of athletics based on the ARCS model.</p>
+
+            <!-- ARCS Model Tabs/Accordion -->
+            <div class="space-y-4 mb-6">
+                <!-- Attention -->
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-blue-700 mb-2">Attention: Fascinating Facts!</h3>
+                    <p class="text-gray-700">Did you know? The fastest human ever recorded, Usain Bolt, reached a top speed of about 44.7 km/h (27.8 mph) during his 100-meter world record run!</p>
+                    <p class="text-gray-700 mt-2">Discover the excitement of athletics through engaging visuals and interesting tidbits.</p>
+                </div>
+
+                <!-- Relevance -->
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-green-700 mb-2">Relevance: Why Athletics Matters</h3>
+                    <p class="text-gray-700">Athletics isn't just about winning races; it's about building endurance, discipline, and healthy habits for life. Learn how these skills apply beyond the track.</p>
+                    <p class="text-gray-700 mt-2">Understand the fundamental theories and rules for race walking and short-distance running. Check out these basic guidelines:</p>
+                    <ul class="list-disc list-inside mt-2 text-gray-600">
+                        <li><strong>Race Walking:</strong> One foot must always be in contact with the ground. The supporting leg must be straightened from the moment of ground contact until the vertical upright position.</li>
+                        <li><strong>Short-Distance Running (Sprint):</strong> Explosive start, maintaining maximum speed, and a strong finish. Focus on arm drive and high knee lift.</li>
+                    </ul>
+                    <!-- Placeholder for embedded video/illustration -->
+                    <div class="mt-4 bg-gray-100 p-4 rounded-lg text-center text-gray-500">
+                        <i class="fas fa-video fa-2x mb-2"></i>
+                        <p>Video/Illustrations demonstrating techniques coming soon!</p>
+                    </div>
+                </div>
+
+                <!-- Confidence -->
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-yellow-700 mb-2">Confidence: Master the Skills</h3>
+                    <p class="text-gray-700">Practice makes perfect! Our challenges are designed to help you gradually improve. You'll receive real-time feedback to help you build confidence in your abilities.</p>
+                </div>
+
+                <!-- Satisfaction -->
+                <div class="card p-4">
+                    <h3 class="font-bold text-lg text-red-700 mb-2">Satisfaction: Earn Your Rewards!</h3>
+                    <p class="text-gray-700">Completing challenges and achieving milestones will earn you awesome badges and help you climb the leaderboard. Feel the satisfaction of seeing your progress!</p>
+                </div>
+            </div>
+            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+
+        <!-- 5. Activity Challenge Section -->
+        <section id="activity-challenge-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Activity Challenge</h2>
+            <div class="card mb-6">
+                <p class="text-gray-700 mb-4">Choose your challenge type:</p>
+                <div class="flex flex-col space-y-4">
+                    <button class="btn-primary" onclick="selectActivityType('racewalk')"><i class="fas fa-walking mr-2"></i>Race Walking</button>
+                    <button class="btn-primary" onclick="selectActivityType('sprint')"><i class="fas fa-running mr-2"></i>Sprinting</button>
+                </div>
+            </div>
+
+            <!-- Challenge Configuration -->
+            <div id="challenge-config" class="card mb-6 p-4 hidden">
+                <h3 class="text-xl font-bold mb-4 text-gray-800" id="challenge-type-title"></h3>
+                <div class="mb-4">
+                    <label for="challengeCategory" class="block text-sm font-medium text-gray-700">Select Category:</label>
+                    <select id="challengeCategory" class="w-full">
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="challengeLevel" class="block text-sm font-medium text-gray-700">Select Level:</label>
+                    <select id="challengeLevel" class="w-full">
+                        <option value="rookie">Rookie (Beginner)</option>
+                        <option value="pro">Pro (Intermediate)</option>
+                        <option value="champion">Champion (Advanced)</option>
+                    </select>
+                </div>
+                <div class="text-gray-600 text-sm mb-4">
+                    <p>Rookie: Moderate goal, easier to achieve.</p>
+                    <p>Pro: Challenging goal, requires good effort.</p>
+                    <p>Champion: Elite goal, for top performers.</p>
+                </div>
+                <button class="btn-primary w-full" onclick="startChallengeSetup()">Start Challenge</button>
+                <button class="btn-secondary w-full mt-2" onclick="cancelChallengeSelection()">Back</button>
+            </div>
+
+            <!-- Challenge Active Screen -->
+            <div id="challenge-active" class="card mb-6 p-4 text-center hidden">
+                <h3 class="text-xl font-bold mb-4 text-gray-800" id="active-challenge-title"></h3>
+                <p class="text-lg text-gray-700 mb-4">Goal: <span id="challengeGoal"></span></p>
+
+                <!-- Permission for Device Motion (iOS specific) -->
+                <div id="permission-request" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-md mb-4 hidden">
+                    <p class="font-bold">Important:</p>
+                    <p class="text-sm">To enable step tracking on iOS, please tap the button below to allow motion and orientation access.</p>
+                    <button class="btn-primary mt-2" onclick="requestDeviceMotionPermission()">Enable Motion Sensors</button>
+                </div>
+
+                <div class="flex items-center justify-center space-x-4 mb-6">
+                    <div>
+                        <div class="text-2xl font-bold text-blue-600" id="timerDisplay">00:00</div>
+                        <p class="text-sm text-gray-500">Duration</p>
+                    </div>
+                    <div id="stepsDisplayContainer">
+                        <div class="text-2xl font-bold text-green-600" id="stepsDisplay">0</div>
+                        <p class="text-sm text-gray-500">Steps</p>
+                    </div>
+                </div>
+
+                <button id="startActivityBtn" class="btn-primary w-full mb-2"><i class="fas fa-play mr-2"></i>Start Activity</button>
+                <button id="stopActivityBtn" class="btn-secondary w-full hidden"><i class="fas fa-stop mr-2"></i>Stop Activity</button>
+            </div>
+            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+
+        <!-- 6. Result Page Section -->
+        <section id="result-page-section" class="section text-center">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Challenge Results</h2>
+            <div class="card p-6 mb-6">
+                <p class="text-xl font-bold mb-4" id="resultStatus">Great Job!</p>
+                <div class="flex flex-col items-center justify-center space-y-4 mb-6">
+                    <p class="text-lg">Activity: <span id="resultActivityType" class="font-semibold"></span></p>
+                    <p class="text-lg">Category: <span id="resultCategory" class="font-semibold"></span></p>
+                    <p class="text-lg">Level: <span id="resultLevel" class="font-semibold"></span></p>
+                    <p class="text-lg">Your Time: <span id="resultTime" class="font-semibold text-blue-600"></span></p>
+                    <p class="text-lg hidden" id="resultStepsContainer">Your Steps: <span id="resultSteps" class="font-semibold text-green-600"></span></p>
+                    <p class="text-lg">Calories Burned: <span id="resultCalories" class="font-semibold text-red-600"></span> kcal</p>
+                </div>
+                <div id="badgeAwardedSection" class="hidden">
+                    <h3 class="text-xl font-bold text-purple-700 mb-4">Badge Earned!</h3>
+                    <img id="badgeImage" src="https://placehold.co/100x100/A020F0/FFFFFF?text=Badge" alt="Badge" class="mx-auto mb-4 rounded-full animated-badge">
+                    <p class="text-lg font-semibold" id="badgeName"></p>
+                </div>
+            </div>
+            <button class="btn-primary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+            <button class="btn-secondary w-full mt-2" onclick="showSection('leaderboard-section')">View Leaderboard</button>
+        </section>
+
+        <!-- 7. Post-Activity Assessment Section -->
+        <section id="post-assessment-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Post-Activity Assessment</h2>
+            <div class="card mb-6">
+                <p class="text-gray-700 mb-4">Reflect on your recent activity and test your knowledge again!</p>
+                <div id="post-assessment-quiz" class="space-y-4">
+                    <!-- Questions will be loaded here by JS -->
+                </div>
+                <button id="submitPostAssessment" class="btn-primary w-full mt-6">Submit Assessment</button>
+            </div>
+            <button class="btn-secondary w-full" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+
+        <!-- 8. Leaderboard Section -->
+        <section id="leaderboard-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Leaderboard</h2>
+            <div class="mb-4">
+                <label for="leaderboardActivityType" class="block text-sm font-medium text-gray-700">Filter by Activity:</label>
+                <select id="leaderboardActivityType" class="w-full" onchange="loadLeaderboard()">
+                    <option value="all">All Activities</option>
+                    <option value="racewalk">Race Walking</option>
+                    <option value="sprint">Sprinting</option>
+                </select>
+            </div>
+            <div class="card p-6">
+                <div id="leaderboard-list" class="space-y-4">
+                    <p class="text-gray-500 text-center">Loading leaderboard...</p>
+                    <!-- Leaderboard entries will be loaded here by JS -->
+                </div>
+            </div>
+            <button class="btn-secondary w-full mt-6" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+
+        <!-- 9. My Results Section (Optional, but good for tracking personal progress) -->
+        <section id="my-results-section" class="section">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">My Results</h2>
+            <div class="card p-6">
+                <div id="my-results-list" class="space-y-4">
+                    <p class="text-gray-500 text-center">Loading your results...</p>
+                    <!-- User's own results will be loaded here by JS -->
+                </div>
+            </div>
+            <button class="btn-secondary w-full mt-6" onclick="showSection('home-menu-section')">Back to Home</button>
+        </section>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, onSnapshot, collection, query, where, getDocs, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables for Firebase instances
+        let app;
+        let db;
+        let auth;
+        let currentUserId = null;
+        let isAuthReady = false; // Flag to indicate if auth state has been checked
+
+        // User data
+        let userData = {
+            name: '',
+            class: '',
+            weight: 0,
+            badges: []
+        };
+
+        // Current Challenge Data
+        let currentChallenge = {
+            activityType: '',
+            category: '',
+            level: '',
+            goalDistance: 0,
+            goalTime: 0
+        };
+
+        // Activity tracking variables
+        let timerInterval;
+        let startTime;
+        let totalSteps = 0;
+        let lastZ = 0; // For step detection
+        let stepThreshold = 1.2; // Adjust based on sensitivity
+        let stepDetectionEnabled = false;
+
+        // Configuration for challenges (distances, time goals, badge names)
+        const challengeConfigs = {
+            racewalk: {
+                categories: {
+                    '1km': { name: '1 Kilometer Walk', goals: { rookie: 10 * 60, pro: 8 * 60, champion: 6 * 60 }, badges: { rookie: 'BeginnerWalker', pro: 'StrideMaster', champion: 'EnduranceGuru' } }, // time in seconds
+                    '2km': { name: '2 Kilometer Walk', goals: { rookie: 20 * 60, pro: 16 * 60, champion: 12 * 60 }, badges: { rookie: 'PacingPro', pro: 'DistanceDominator', champion: 'MarathonMavens' } },
+                    '5km': { name: '5 Kilometer Walk', goals: { rookie: 50 * 60, pro: 40 * 60, champion: 30 * 60 }, badges: { rookie: 'StaminaStarter', pro: 'ResilienceRunner', champion: 'UltraWalker' } }
+                },
+                caloriesPerKm: 60 // Approximate calories burned per km for walking (adjust based on user weight later)
+            },
+            sprint: {
+                categories: {
+                    '50m': { name: '50 Meter Sprint', goals: { rookie: 10, pro: 8, champion: 6 }, badges: { rookie: 'DashBeginner', pro: 'Speedster', champion: 'LightningLegs' } }, // time in seconds
+                    '100m': { name: '100 Meter Sprint', goals: { rookie: 20, pro: 16, champion: 12 }, badges: { rookie: 'QuickStarter', pro: 'TrackBlazer', champion: 'VelocityVeteran' } },
+                    '200m': { name: '200 Meter Sprint', goals: { rookie: 40, pro: 30, champion: 25 }, badges: { rookie: 'WindSprinter', pro: 'PowerPacer', champion: 'SprintSultan' } }
+                },
+                caloriesPer100m: 10 // Approximate calories burned per 100m for sprinting
+            }
+        };
+
+        // Quiz Questions (Preliminary & Post-activity)
+        const quizQuestions = [
+            {
+                question: "Which of the following is NOT a characteristic of race walking?",
+                options: ["One foot must always be in contact with the ground.", "The supporting leg must be straightened.", "Both feet are allowed to be off the ground simultaneously.", "The hips move with a distinct rotation."],
+                answer: "Both feet are allowed to be off the ground simultaneously."
+            },
+            {
+                question: "What is the primary focus during the start of a short-distance run (sprint)?",
+                options: ["Maintaining a steady pace", "Explosive acceleration", "Conserving energy", "Relaxing and enjoying the run"],
+                answer: "Explosive acceleration"
+            },
+            {
+                question: "What is the purpose of arm drive in sprinting?",
+                options: ["To slow down the runner", "To provide balance and momentum", "To make the runner look good", "To distract opponents"],
+                answer: "To provide balance and momentum"
+            },
+            {
+                question: "Which of the following is a key rule for the supporting leg in race walking?",
+                options: ["It must be bent at the knee.", "It must remain straight from ground contact until vertical.", "It can swing freely.", "It should be lifted high off the ground."],
+                answer: "It must remain straight from ground contact until vertical."
+            },
+            {
+                question: "What does ARCS stand for in the context of motivational design?",
+                options: ["Ability, Reward, Challenge, Success", "Attention, Relevance, Confidence, Satisfaction", "Activity, Rhythm, Coordination, Strength", "Assessment, Recognition, Competition, Skill"],
+                answer: "Attention, Relevance, Confidence, Satisfaction"
+            }
+        ];
+
+        // --- Utility Functions ---
+        function showToast(message, duration = 3000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        function showModal(title, message, buttons) {
+            const modal = document.getElementById('genericModal');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            const modalButtons = document.getElementById('modalButtons');
+            modalButtons.innerHTML = ''; // Clear existing buttons
+
+            buttons.forEach(btn => {
+                const button = document.createElement('button');
+                button.textContent = btn.text;
+                button.className = btn.class || 'btn-secondary'; // Default class
+                button.onclick = () => {
+                    modal.style.display = 'none';
+                    if (btn.handler) {
+                        btn.handler();
+                    }
+                };
+                modalButtons.appendChild(button);
+            });
+            modal.style.display = 'flex';
+        }
+
+        // Helper to format time (seconds to MM:SS)
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }
+
+        function copyUserId() {
+            const userIdText = document.getElementById('displayUserId').textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(userIdText).then(() => {
+                    showToast('User ID copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                    showToast('Failed to copy ID. Please copy manually.');
+                });
+            } else {
+                // Fallback for older browsers or if Clipboard API is not available (e.g., inside iframe directly)
+                const textArea = document.createElement("textarea");
+                textArea.value = userIdText;
+                textArea.style.position = "fixed"; // Avoid scrolling to bottom
+                textArea.style.opacity = "0"; // Hide from view
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('User ID copied to clipboard!');
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    showToast('Failed to copy ID. Please copy manually.');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+
+        // --- Section Management ---
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'flex'; // Use flex for layout
+            // Specific actions when showing sections
+            if (sectionId === 'home-menu-section') {
+                document.getElementById('displayUserName').textContent = userData.name;
+                document.getElementById('displayUserId').textContent = currentUserId;
+            } else if (sectionId === 'pre-assessment-section') {
+                loadQuiz('pre-assessment-quiz');
+            } else if (sectionId === 'post-assessment-section') {
+                loadQuiz('post-assessment-quiz');
+            } else if (sectionId === 'leaderboard-section') {
+                loadLeaderboard();
+            } else if (sectionId === 'my-results-section') {
+                loadMyResults();
+            }
+        }
+
+        // --- Firebase Initialization and Auth ---
+        window.onload = async () => {
+            // Check if Firebase config is available from the environment
+            // Placeholder Firebase config for local testing. REPLACE WITH YOUR ACTUAL FIREBASE CONFIG!
+            const firebaseConfig = {
+                apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
+				authDomain: "fitmove-ca108.firebaseapp.com",
+				projectId: "fitmove-ca108",
+				storageBucket: "fitmove-ca108.firebasestorage.app",
+				messagingSenderId: "705963366416",
+				appId: "1:705963366416:web:f9d534fa8504e6f85e5295",
+				measurementId: "G-8MWB4NKV6R"
+            };
+
+            // Use the environment provided config if available (for Canvas), otherwise use your actual config
+            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
+
+            if (firebaseConfig.apiKey === "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw") {
+                showToast("Warning: Using placeholder Firebase config. Replace with your actual Firebase project details for full functionality.", 7000);
+            }
+
+
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUserId = user.uid;
+                    isAuthReady = true;
+                    await loadUserData();
+                } else {
+                    // Sign in anonymously if no user is found and no custom token is provided
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        try {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } catch (error) {
+                            console.error("Error signing in with custom token:", error);
+                            showModal("Authentication Error", "Could not sign you in automatically. Please try refreshing the page.", [{text: "OK", class: "btn-primary"}]);
+                            await signInAnonymously(auth); // Fallback to anonymous
+                        }
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                }
+            });
+        };
+
+        // --- User Data Management ---
+        async function loadUserData() {
+            if (!currentUserId || !isAuthReady) {
+                console.log("Auth not ready or userId not set. Cannot load user data.");
+                return;
+            }
+            // IMPORTANT: __app_id is injected by the Canvas environment.
+            // When running locally outside Canvas, it will fallback to firebaseConfig.projectId.
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
+            try {
+                const docSnap = await getDoc(userDocRef);
+                if (docSnap.exists()) {
+                    userData = docSnap.data();
+                    showSection('home-menu-section'); // Show home if user data exists
+                } else {
+                    showSection('user-registration-section'); // Show registration if new user
+                }
+            } catch (e) {
+                console.error("Error loading user data:", e);
+                showToast("Error loading your data. Please try again.", 5000);
+                showSection('user-registration-section'); // Fallback to registration on error
+            }
+        }
+
+        document.getElementById('user-details-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('userName').value.trim();
+            const className = document.getElementById('userClass').value.trim();
+            const weight = parseFloat(document.getElementById('userWeight').value);
+
+            if (!name || !className || isNaN(weight) || weight <= 0) {
+                showToast("Please fill in all details correctly.");
+                return;
+            }
+
+            userData.name = name;
+            userData.class = className;
+            userData.weight = weight;
+
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
+            try {
+                await setDoc(userDocRef, userData, { merge: true }); // Use merge to avoid overwriting badges
+                showToast("Your details have been saved!");
+                showSection('home-menu-section');
+            } catch (e) {
+                console.error("Error saving user data:", e);
+                showToast("Error saving your details. Please try again.", 5000);
+            }
+        });
+
+        // --- Assessment Logic ---
+        function loadQuiz(quizContainerId) {
+            const quizContainer = document.getElementById(quizContainerId);
+            quizContainer.innerHTML = ''; // Clear previous questions
+
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-sm';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold text-gray-800 mb-2">${index + 1}. ${q.question}</p>
+                    <div class="space-y-2">
+                        ${q.options.map(option => `
+                            <label class="flex items-center text-gray-700">
+                                <input type="radio" name="question${index}" value="${option}" class="mr-2">
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function submitAssessment(quizContainerId) {
+            let score = 0;
+            let totalQuestions = quizQuestions.length;
+
+            quizQuestions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`#${quizContainerId} input[name="question${index}"]:checked`);
+                if (selectedOption && selectedOption.value === q.answer) {
+                    score++;
+                }
+            });
+
+            showModal(
+                "Assessment Complete!",
+                `You scored ${score} out of ${totalQuestions}.`,
+                [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]
+            );
+        }
+
+        document.getElementById('submitPreAssessment').addEventListener('click', () => submitAssessment('pre-assessment-quiz'));
+        document.getElementById('submitPostAssessment').addEventListener('click', () => submitAssessment('post-assessment-quiz'));
+
+        // --- Activity Challenge Logic ---
+        function selectActivityType(type) {
+            currentChallenge.activityType = type;
+            document.getElementById('challenge-config').classList.remove('hidden');
+            document.getElementById('challenge-type-title').textContent = type === 'racewalk' ? 'Race Walking Challenge' : 'Sprinting Challenge';
+
+            const categorySelect = document.getElementById('challengeCategory');
+            categorySelect.innerHTML = ''; // Clear existing options
+
+            const categories = challengeConfigs[type].categories;
+            for (const key in categories) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = categories[key].name;
+                categorySelect.appendChild(option);
+            }
+        }
+
+        function cancelChallengeSelection() {
+            document.getElementById('challenge-config').classList.add('hidden');
+        }
+
+        async function startChallengeSetup() {
+            const categoryKey = document.getElementById('challengeCategory').value;
+            const levelKey = document.getElementById('challengeLevel').value;
+
+            if (!currentChallenge.activityType || !categoryKey || !levelKey) {
+                showToast("Please select activity type, category, and level.");
+                return;
+            }
+
+            const config = challengeConfigs[currentChallenge.activityType].categories[categoryKey];
+            currentChallenge.category = categoryKey;
+            currentChallenge.level = levelKey;
+            currentChallenge.goalTime = config.goals[levelKey];
+            currentChallenge.goalDistance = parseFloat(categoryKey.match(/\d+(\.\d+)?/)[0]); // e.g., "100m" -> 100, "1km" -> 1
+
+            document.getElementById('active-challenge-title').textContent = `${config.name} (${levelKey.charAt(0).toUpperCase() + levelKey.slice(1)})`;
+            document.getElementById('challengeGoal').textContent = formatTime(currentChallenge.goalTime);
+
+            if (currentChallenge.activityType === 'racewalk') {
+                document.getElementById('stepsDisplayContainer').classList.remove('hidden');
+            } else {
+                document.getElementById('stepsDisplayContainer').classList.add('hidden');
+            }
+
+            // Check for DeviceMotionEvent permission on iOS
+            if (currentChallenge.activityType === 'racewalk' && typeof DeviceMotionEvent.requestPermission === 'function') {
+                document.getElementById('permission-request').classList.remove('hidden');
+            } else {
+                document.getElementById('permission-request').classList.add('hidden');
+            }
+
+            showSection('activity-challenge-section'); // Stay on this section, just show active div
+            document.getElementById('challenge-config').classList.add('hidden');
+            document.getElementById('challenge-active').classList.remove('hidden');
+
+            // Reset displays
+            document.getElementById('timerDisplay').textContent = '00:00';
+            document.getElementById('stepsDisplay').textContent = '0';
+            document.getElementById('startActivityBtn').classList.remove('hidden');
+            document.getElementById('stopActivityBtn').classList.add('hidden');
+            totalSteps = 0;
+            lastZ = 0; // Reset lastZ
+            stepDetectionEnabled = false; // Disable until start button is pressed
+        }
+
+        // Request DeviceMotion permission for iOS
+        async function requestDeviceMotionPermission() {
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                try {
+                    const permissionState = await DeviceMotionEvent.requestPermission();
+                    if (permissionState === 'granted') {
+                        showToast("Motion sensor access granted!");
+                        document.getElementById('permission-request').classList.add('hidden');
+                    } else {
+                        showToast("Motion sensor access denied. Step counting may not work.", 5000);
+                        document.getElementById('permission-request').classList.add('hidden'); // Hide after attempt
+                    }
+                } catch (error) {
+                    console.error("Error requesting DeviceMotion permission:", error);
+                    showToast("Error requesting motion sensor access. Please check device settings.", 5000);
+                    document.getElementById('permission-request').classList.add('hidden'); // Hide after attempt
+                }
+            } else {
+                // Not iOS 13+ or already granted
+                document.getElementById('permission-request').classList.add('hidden');
+            }
+        }
+
+        function handleDeviceMotion(event) {
+            if (!stepDetectionEnabled) return;
+
+            const acceleration = event.accelerationIncludingGravity;
+            if (!acceleration || typeof acceleration.z === 'undefined') return; // Sometimes null or z might be missing
+
+            // Simple step detection: detect peaks in Z-axis acceleration
+            // This is a very basic heuristic and can be inaccurate.
+            // A more robust algorithm would involve filtering, moving averages, etc.
+            const currentZ = acceleration.z;
+            if (lastZ !== 0) {
+                const deltaZ = currentZ - lastZ;
+                // Detect a significant upward acceleration (a step)
+                if (deltaZ > stepThreshold && lastZ < 0) { // lastZ < 0 implies foot coming up from a low point
+                    totalSteps++;
+                    document.getElementById('stepsDisplay').textContent = totalSteps;
+                }
+            }
+            lastZ = currentZ;
+        }
+
+        document.getElementById('startActivityBtn').addEventListener('click', () => {
+            startTime = Date.now();
+            document.getElementById('startActivityBtn').classList.add('hidden');
+            document.getElementById('stopActivityBtn').classList.remove('hidden');
+            showToast("Activity started!");
+
+            // Start timer
+            timerInterval = setInterval(() => {
+                const elapsedTime = Date.now() - startTime;
+                document.getElementById('timerDisplay').textContent = formatTime(elapsedTime / 1000);
+            }, 1000);
+
+            // Start step detection if race walk
+            if (currentChallenge.activityType === 'racewalk') {
+                stepDetectionEnabled = true;
+                if (window.DeviceMotionEvent) {
+                    window.addEventListener('devicemotion', handleDeviceMotion);
+                } else {
+                    showToast("Device motion sensors not supported on this device. Step counting will not work.", 5000);
+                }
+            }
+        });
+
+        document.getElementById('stopActivityBtn').addEventListener('click', async () => {
+            clearInterval(timerInterval);
+            document.getElementById('stopActivityBtn').classList.add('hidden');
+            stepDetectionEnabled = false;
+            if (window.DeviceMotionEvent) {
+                window.removeEventListener('devicemotion', handleDeviceMotion);
+            }
+
+            const finalDurationSeconds = (Date.now() - startTime) / 1000;
+
+            // Calculate calories burned
+            let caloriesBurned = 0;
+            // Calorie calculation is simplified. MET values are more complex and depend on intensity/speed.
+            // These are very rough estimates.
+            if (currentChallenge.activityType === 'racewalk') {
+                // Convert distance to km if it's in meters (e.g., 5000m = 5km)
+                const distanceInKm = currentChallenge.category.includes('km')
+                    ? currentChallenge.goalDistance
+                    : currentChallenge.goalDistance / 1000;
+
+                // Calorie calculation: Calories = METs * weight_in_kg * time_in_hours
+                // For walking/racewalking, METs can range from 3-8 depending on speed. Let's use 5 as average.
+                const MET_racewalk = 5; // Simplified MET value
+                const timeInHours = finalDurationSeconds / 3600;
+                caloriesBurned = MET_racewalk * userData.weight * timeInHours;
+            } else if (currentChallenge.activityType === 'sprint') {
+                const distanceInM = currentChallenge.goalDistance;
+                // For sprinting, METs are much higher, often 10-12+.
+                const MET_sprint = 10; // Simplified MET value
+                const timeInHours = finalDurationSeconds / 3600;
+                caloriesBurned = MET_sprint * userData.weight * timeInHours;
+            }
+            caloriesBurned = Math.round(caloriesBurned); // Round to whole number
+
+            // Check if goal was met (duration <= goalTime)
+            const goalMet = finalDurationSeconds <= currentChallenge.goalTime;
+            let badgeEarned = null;
+
+            if (goalMet) {
+                badgeEarned = challengeConfigs[currentChallenge.activityType].categories[currentChallenge.category].badges[currentChallenge.level];
+                // Add badge to user's data if not already present
+                if (!userData.badges.includes(badgeEarned)) {
+                    userData.badges.push(badgeEarned);
+                    const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+                    const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
+                    await updateDoc(userDocRef, { badges: userData.badges });
+                    showToast(`New Badge Earned: ${badgeEarned}!`);
+                }
+            }
+
+            // Save challenge result to Firestore (public collection for leaderboard)
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const challengeDocRef = collection(db, `artifacts/${appId}/public/data/challenges`);
+            try {
+                await addDoc(challengeDocRef, {
+                    userId: currentUserId,
+                    userName: userData.name,
+                    userClass: userData.class,
+                    activityType: currentChallenge.activityType,
+                    category: currentChallenge.category,
+                    level: currentChallenge.level,
+                    duration: finalDurationSeconds,
+                    steps: currentChallenge.activityType === 'racewalk' ? totalSteps : 0,
+                    caloriesBurned: caloriesBurned,
+                    goalMet: goalMet,
+                    badgeEarned: badgeEarned, // Store which badge was earned (can be null)
+                    timestamp: Timestamp.now()
+                });
+                showToast("Challenge results saved!");
+            } catch (e) {
+                console.error("Error saving challenge result:", e);
+                showToast("Error saving results. Please try again.", 5000);
+            }
+
+            // Display results
+            document.getElementById('resultStatus').textContent = goalMet ? 'Challenge Completed Successfully!' : 'Challenge Not Met This Time!';
+            document.getElementById('resultStatus').classList.toggle('text-green-600', goalMet);
+            document.getElementById('resultStatus').classList.toggle('text-red-600', !goalMet);
+
+            document.getElementById('resultActivityType').textContent = currentChallenge.activityType === 'racewalk' ? 'Race Walking' : 'Sprinting';
+            document.getElementById('resultCategory').textContent = challengeConfigs[currentChallenge.activityType].categories[currentChallenge.category].name;
+            document.getElementById('resultLevel').textContent = currentChallenge.level.charAt(0).toUpperCase() + currentChallenge.level.slice(1);
+            document.getElementById('resultTime').textContent = formatTime(finalDurationSeconds);
+            document.getElementById('resultCalories').textContent = caloriesBurned;
+
+            if (currentChallenge.activityType === 'racewalk') {
+                document.getElementById('resultStepsContainer').classList.remove('hidden');
+                document.getElementById('resultSteps').textContent = totalSteps;
+            } else {
+                document.getElementById('resultStepsContainer').classList.add('hidden');
+            }
+
+            if (badgeEarned) {
+                document.getElementById('badgeAwardedSection').classList.remove('hidden');
+                document.getElementById('badgeName').textContent = badgeEarned;
+                // Placeholder image for badge
+                document.getElementById('badgeImage').src = `https://placehold.co/100x100/A020F0/FFFFFF?text=${badgeEarned.replace(/ /g, '%20')}`;
+            } else {
+                document.getElementById('badgeAwardedSection').classList.add('hidden');
+            }
+
+            showSection('result-page-section');
+            document.getElementById('challenge-active').classList.add('hidden');
+            document.getElementById('startActivityBtn').classList.remove('hidden'); // Reset for next challenge
+        });
+
+        // --- Leaderboard Logic ---
+        async function loadLeaderboard() {
+            if (!isAuthReady) {
+                document.getElementById('leaderboard-list').innerHTML = '<p class="text-gray-500 text-center">Please wait for authentication...</p>';
+                return;
+            }
+
+            const leaderboardList = document.getElementById('leaderboard-list');
+            leaderboardList.innerHTML = '<p class="text-gray-500 text-center">Loading leaderboard...</p>'; // Loading state
+
+            const selectedActivityType = document.getElementById('leaderboardActivityType').value;
+
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            let q;
+            if (selectedActivityType === 'all') {
+                q = query(collection(db, `artifacts/${appId}/public/data/challenges`));
+            } else {
+                q = query(collection(db, `artifacts/${appId}/public/data/challenges`), where('activityType', '==', selectedActivityType));
+            }
+
+            try {
+                const querySnapshot = await getDocs(q);
+                let results = [];
+                querySnapshot.forEach((doc) => {
+                    results.push(doc.data());
+                });
+
+                // Sort results for leaderboard (lowest time is best)
+                // Note: Firestore orderBy() is more efficient but requires indexes.
+                // For simplicity and to avoid index issues, we sort in memory.
+                results.sort((a, b) => a.duration - b.duration);
+
+                leaderboardList.innerHTML = ''; // Clear loading message
+
+                if (results.length === 0) {
+                    leaderboardList.innerHTML = '<p class="text-gray-500 text-center">No challenge records yet.</p>';
+                    return;
+                }
+
+                // Group by Category and Level, then display top performers
+                const groupedResults = {};
+                results.forEach(res => {
+                    const key = `${res.activityType}-${res.category}-${res.level}`;
+                    if (!groupedResults[key]) {
+                        groupedResults[key] = [];
+                    }
+                    groupedResults[key].push(res);
+                });
+
+                for (const key in groupedResults) {
+                    const [activityType, category, level] = key.split('-');
+                    const categoryName = challengeConfigs[activityType]?.categories[category]?.name || category;
+
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'mb-6 p-4 bg-blue-50 rounded-lg shadow-sm';
+                    categoryDiv.innerHTML = `
+                        <h4 class="font-bold text-blue-800 text-lg mb-2">${categoryName} - ${level.charAt(0).toUpperCase() + level.slice(1)} Leaderboard</h4>
+                        <ul class="space-y-2"></ul>
+                    `;
+                    const ul = categoryDiv.querySelector('ul');
+
+                    // Take top 5 or 10 for display
+                    const topPerformers = groupedResults[key].slice(0, 10); // Display top 10 for each category/level
+
+                    topPerformers.forEach((data, index) => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center justify-between text-gray-700 p-2 rounded-md bg-white shadow-xs';
+                        li.innerHTML = `
+                            <span class="font-bold mr-2 text-blue-700">${index + 1}.</span>
+                            <span class="flex-grow">${data.userName} (<span class="text-sm text-gray-500">${data.userClass}</span>)</span>
+                            <span class="font-semibold text-green-700">${formatTime(data.duration)}</span>
+                        `;
+                        ul.appendChild(li);
+                    });
+                    leaderboardList.appendChild(categoryDiv);
+                }
+
+            } catch (e) {
+                console.error("Error loading leaderboard:", e);
+                leaderboardList.innerHTML = '<p class="text-red-500 text-center">Error loading leaderboard. Please try again.</p>';
+            }
+        }
+
+        // --- My Results Logic ---
+        async function loadMyResults() {
+            if (!currentUserId || !isAuthReady) {
+                document.getElementById('my-results-list').innerHTML = '<p class="text-gray-500 text-center">Please wait for authentication...</p>';
+                return;
+            }
+
+            const myResultsList = document.getElementById('my-results-list');
+            myResultsList.innerHTML = '<p class="text-gray-500 text-center">Loading your results...</p>';
+
+            const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const q = query(collection(db, `artifacts/${appId}/public/data/challenges`), where('userId', '==', currentUserId));
+
+            try {
+                const querySnapshot = await getDocs(q);
+                let myResults = [];
+                querySnapshot.forEach((doc) => {
+                    myResults.push(doc.data());
+                });
+
+                // Sort by timestamp descending (most recent first)
+                myResults.sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis());
+
+                myResultsList.innerHTML = ''; // Clear loading message
+
+                if (myResults.length === 0) {
+                    myResultsList.innerHTML = '<p class="text-gray-500 text-center">You haven\'t completed any challenges yet. Go to Activity Challenge!</p>';
+                    return;
+                }
+
+                myResults.forEach((result) => {
+                    const resultCard = document.createElement('div');
+                    resultCard.className = 'card p-4 mb-4';
+                    const categoryName = challengeConfigs[result.activityType]?.categories[result.category]?.name || result.category;
+                    resultCard.innerHTML = `
+                        <h4 class="font-bold text-lg mb-2">${categoryName} (${result.activityType === 'racewalk' ? 'Race Walking' : 'Sprinting'})</h4>
+                        <p class="text-md">Level: <span class="font-semibold">${result.level.charAt(0).toUpperCase() + result.level.slice(1)}</span></p>
+                        <p class="text-md">Time: <span class="font-semibold text-blue-600">${formatTime(result.duration)}</span></p>
+                        ${result.activityType === 'racewalk' ? `<p class="text-md">Steps: <span class="font-semibold text-green-600">${result.steps}</span></p>` : ''}
+                        <p class="text-md">Calories Burned: <span class="font-semibold text-red-600">${result.caloriesBurned} kcal</span></p>
+                        <p class="text-md ${result.goalMet ? 'text-green-700' : 'text-red-700'}">Status: ${result.goalMet ? 'Goal Met!' : 'Goal Not Met'}</p>
+                        ${result.badgeEarned ? `<p class="text-md text-purple-700">Badge: <span class="font-semibold">${result.badgeEarned}</span></p>` : ''}
+                        <p class="text-xs text-gray-500 mt-2">Completed on: ${new Date(result.timestamp.toMillis()).toLocaleString()}</p>
+                    `;
+                    myResultsList.appendChild(resultCard);
+                });
+
+            } catch (e) {
+                console.error("Error loading user results:", e);
+                myResultsList.innerHTML = '<p class="text-red-500 text-center">Error loading your results. Please try again.</p>';
+            }
+        }
     </script>
-  </body>
+</body>
 </html>
