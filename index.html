@@ -549,24 +549,26 @@
             }
         }
 
+        // Global variable for Firebase config (declared once)
+        let firebaseConfig;
+
         // --- Firebase Initialization and Auth ---
         window.onload = async () => {
-            // Check if Firebase config is available from the environment
             // Placeholder Firebase config for local testing. REPLACE WITH YOUR ACTUAL FIREBASE CONFIG!
             const firebaseConfig = {
-                apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
+				apiKey: "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw",
 				authDomain: "fitmove-ca108.firebaseapp.com",
 				projectId: "fitmove-ca108",
 				storageBucket: "fitmove-ca108.firebasestorage.app",
 				messagingSenderId: "705963366416",
 				appId: "1:705963366416:web:f9d534fa8504e6f85e5295",
-				measurementId: "G-8MWB4NKV6R"
+				measurementId: "G-8MWB4NKV6R
             };
 
-            // Use the environment provided config if available (for Canvas), otherwise use your actual config
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
+            // Assign to the global firebaseConfig variable
+            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : yourActualFirebaseConfig;
 
-            if (firebaseConfig.apiKey === "AIzaSyBoYkqntUYKU6xHqsDy5kmtjQufRzc_Bvw") {
+            if (firebaseConfig.apiKey === "YOUR_API_KEY") {
                 showToast("Warning: Using placeholder Firebase config. Replace with your actual Firebase project details for full functionality.", 7000);
             }
 
