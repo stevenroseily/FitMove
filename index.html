@@ -129,6 +129,71 @@
             transition: width 0.3s ease-in-out;
             border-radius: 10px;
         }
+
+        /* New Learning Module Specific Styles */
+        .pro-tip, .fun-fact, .star-spotlight {
+            background-color: #e0f2fe; /* Light blue background */
+            border-left: 4px solid #38b2ac; /* Teal border */
+            padding: 1rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #0c4a6e; /* Darker blue text */
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 200px; /* Fixed height for placeholders */
+            background-color: #cbd5e1; /* Gray background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569; /* Darker gray text */
+            font-weight: 600;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            overflow: hidden; /* Ensure text doesn't overflow */
+        }
+        .image-placeholder img, .image-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area, cropping if necessary */
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) { /* Small screens and up */
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .summary-item {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        .summary-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        .call-to-action {
+            background-color: #60a5fa; /* Blue background */
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+        .call-to-action h3 {
+            color: white; /* Ensure heading in CTA is white */
+        }
     </style>
 </head>
 <body>
@@ -437,113 +502,106 @@
 
         // Learning Module Content
         const learningContent = {
-            sprint: {
-                introduction: {
-                    title: "The Explosive World of Sprinting!",
-                    content: `Imagine launching yourself forward with incredible power, covering ground faster than you thought possible! Did you know that the fastest human sprint ever recorded was by Usain Bolt, reaching nearly 28 miles per hour? Sprinting is an exhilarating athletic event that combines raw power with refined technique. It's all about maximizing your speed over a short, intense burst.`,
-                    image: "https://placehold.co/300x180/ADD8E6/000000?text=Dynamic+Sprint+Start"
-                },
-                benefits: {
-                    title: "Why Sprinting Makes You Stronger & Faster",
-                    content: `Sprinting isn't just for competitive athletes; it offers incredible benefits for everyone!
-                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                        <li><strong>Boosts Power & Speed:</strong> Develop explosive strength in your legs and core, translating to faster movements in all activities.</li>
-                        <li><strong>Enhances Cardiovascular Health:</strong> High-intensity bursts significantly improve heart and lung capacity, boosting your endurance.</li>
-                        <li><strong>Accelerates Metabolism:</strong> Sprinting can lead to a higher calorie burn even after your workout, aiding in fitness goals.</li>
-                        <li><strong>Improves Agility & Coordination:</strong> The rapid movements and quick changes in direction sharpen your reflexes and balance.</li>
-                        <li><strong>Mental Toughness:</strong> Pushing your limits in a sprint builds mental resilience and focus.</li>
-                    </ul>
-                    `,
-                    video: "https://placehold.co/300x180/ADD8E6/000000?text=Benefits+of+Sprinting+Video"
-                },
-                technique: {
-                    title: "Mastering Sprint Technique: From Start to Finish",
-                    content: `Sprinting involves distinct phases, each crucial for maximizing speed and efficiency.
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">1. The Start (Explosive Launch)</h4>
-                    <p class="text-gray-700 mb-2">Whether from starting blocks or a standing position, the goal is an explosive push-off. Lean forward aggressively, driving your lead leg powerfully into the ground. Your arms should pump vigorously to aid momentum.</p>
-                    <img src="https://placehold.co/300x150/ADD8E6/000000?text=Sprint+Block+Start" class="mx-auto mt-2 mb-4 rounded-lg shadow-sm">
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">2. Acceleration Phase (Building Momentum)</h4>
-                    <p class="text-gray-700 mb-2">Gradually transition from a low, forward lean to a more upright posture. Focus on powerful, long strides and continued strong arm drive. Your knees should come high, and your feet should land directly under your hips.</p>
-                    <img src="https://placehold.co/300x150/ADD8E6/000000?text=Sprint+Acceleration+Form" class="mx-auto mt-2 mb-4 rounded-lg shadow-sm">
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">3. Maximum Velocity (Top Speed)</h4>
-                    <p class="text-gray-700 mb-2">Once upright, maintain a tall, relaxed posture. Your arms should swing like pendulums, and your legs should cycle quickly, landing on the balls of your feet. Avoid overstriding; focus on quick turnover.</p>
-                    <img src="https://placehold.co/300x150/ADD8E6/000000?text=Sprint+Top+Speed+Form" class="mx-auto mt-2 mb-4 rounded-lg shadow-sm">
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">4. The Finish (Crossing the Line)</h4>
-                    <p class="text-gray-700 mb-2">Maintain your sprint form through the finish line. Many sprinters "dip" or "lean" their torso forward in the final steps to cross the line with their chest sooner, a technique that can shave off crucial milliseconds.</p>
-                    <video controls class="mx-auto mt-2 mb-4 rounded-lg shadow-sm w-full h-auto">
-                        <source src="https://placehold.co/300x180/ADD8E6/000000?text=Sprint+Finish+Video" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    `,
-                    video: "" // Content embedded
-                },
-                practice: {
-                    title: "Practice & Progress: Becoming a Faster Sprinter",
-                    content: `Consistent practice is key to improving your sprint performance. Incorporate drills like:
-                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                        <li><strong>Block Starts/Standing Starts:</strong> Focus on explosive initial push.</li>
-                        <li><strong>Short Accelerations (e.g., 20-30m):</strong> Practice building speed smoothly.</li>
-                        <li><strong>Form Drills (e.g., A-skips, B-skips):</strong> Refine your running mechanics.</li>
-                        <li><strong>Interval Sprints:</strong> Run short distances at near-max effort, followed by rest.</li>
-                    </ul>
-                    Our Activity Challenges provide the perfect opportunity to apply what you've learned and see your speed improve! Track your times, earn badges, and climb the leaderboard to celebrate your progress.`,
-                    image: "https://placehold.co/300x180/ADD8E6/000000?text=Sprint+Training+Drills"
-                }
-            },
-            racewalk: {
-                introduction: {
-                    title: "Discovering the Art of Race Walking!",
-                    content: `Did you know that race walking is an Olympic sport with incredibly strict rules, where athletes maintain contact with the ground at all times while moving at impressive speeds? It's a unique and challenging discipline that combines the endurance of long-distance running with the precision of a technical event.`,
-                    image: "https://placehold.co/300x180/ADD8E6/000000?text=Racewalk+Introduction"
-                },
-                benefits: {
-                    title: "The Amazing Health Benefits of Race Walking",
-                    content: `Race walking is a fantastic way to improve your fitness with a lower impact on your joints compared to running.
-                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                        <li><strong>Joint-Friendly Exercise:</strong> Continuous ground contact reduces impact, making it ideal for joint health.</li>
-                        <li><strong>Full-Body Engagement:</strong> The unique technique engages your core, glutes, hamstrings, and arms, providing a comprehensive workout.</li>
-                        <li><strong>Cardiovascular Endurance:</strong> Sustained effort at a high intensity significantly strengthens your heart and lungs.</li>
-                        <li><strong>Improved Posture & Balance:</strong> The emphasis on upright form and controlled movement helps enhance overall body alignment.</li>
-                        <li><strong>Mental Focus:</strong> Concentrating on technique during longer walks can be a meditative and mentally engaging experience.</li>
-                    </ul>
-                    `,
-                    video: "https://placehold.co/300x180/ADD8E6/000000?text=Racewalk+Benefits+Video"
-                },
-                technique: {
-                    title: "Mastering Race Walking: Rules & Form",
-                    content: `Race walking is defined by two core rules, which dictate its distinctive technique:
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">1. The Contact Rule (No Flight Phase)</h4>
-                    <p class="text-gray-700 mb-2">One foot must always be in contact with the ground. This means there's no moment where both feet are off the ground, unlike running. Focus on a smooth, continuous roll from your heel through your foot to your toes.</p>
-                    <img src="https://placehold.co/300x150/ADD8E6/000000?text=Racewalk+Contact+Rule" class="mx-auto mt-2 mb-4 rounded-lg shadow-sm">
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">2. The Straight Leg Rule</h4>
-                    <p class="text-gray-700 mb-2">The supporting leg (the one on the ground) must be straightened from the moment of ground contact until the vertical upright position. This creates the characteristic "straight-leg" appearance as you stride forward.</p>
-                    <img src="https://placehold.co/300x150/ADD8E6/000000?text=Racewalk+Straight+Leg" class="mx-auto mt-2 mb-4 rounded-lg shadow-sm">
-                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">Key Techniques for Efficiency:</h4>
-                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                        <li><strong>Hip Rotation:</strong> A powerful hip rotation is crucial for extending your stride length while adhering to the rules.</li>
-                        <li><strong>Arm Swing:</strong> Keep your arms bent at approximately 90 degrees and swing them vigorously from shoulder to hip to generate momentum and balance.</li>
-                        <li><strong>Foot Strike:</strong> Land on your heel, roll through the sole, and push off with your toes.</li>
-                    </ul>
-                    <video controls class="mx-auto mt-2 mb-4 rounded-lg shadow-sm w-full h-auto">
-                        <source src="https://placehold.co/300x180/ADD8E6/000000?text=Racewalk+Technique+Video" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    `,
-                    video: "" // Content embedded
-                },
-                practice: {
-                    title: "Practice & Progress: Becoming a Master Race Walker",
-                    content: `Consistent practice focusing on technique will make you a more efficient and faster race walker. Try these drills:
-                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                        <li><strong>"Butt Kicks" & "High Knees":</strong> Improve leg turnover and muscle activation.</li>
-                        <li><strong>Arm Swing Drills:</strong> Practice powerful and coordinated arm movements.</li>
-                        <li><strong>Short Segment Walks:</strong> Focus intensely on one rule (e.g., contact or straight leg) for short distances.</li>
-                        <li><strong>Longer Practice Walks:</strong> Apply all techniques over increasing distances.</li>
-                    </ul>
-                    Our Activity Challenges are designed to help you apply these techniques in a fun, goal-oriented way. Track your steps and time, earn badges, and see how far you can go!`,
-                    image: "https://placehold.co/300x180/ADD8E6/000000?text=Racewalk+Training+Drills"
-                }
-            }
+            sprint: `
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-4">Short Distance Running (Sprint): Unleash Your Inner Cheetah</h2>
+                    <p class="text-lg text-gray-600 mb-6">Prepare to discover the explosive power and strategic elements of short-distance running, or sprinting.</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">1. Sprinting: The Science of Explosive Speed</h3>
+                    <p>Sprinting is the ultimate display of raw power unleashed in a matter of seconds. In competitive races, victories are often decided by milliseconds, making every aspect of technique and rule adherence critical. Sprinting is governed by strict regulations, including mandatory <strong>Lane Discipline</strong>, meaning athletes must stay within their designated lane to avoid disqualification. Furthermore, <strong>Start Rules</strong> are rigorously enforced, with false starts leading to instant disqualification.</p>
+
+                    <p>Sprint distances vary, each demanding a unique blend of speed and strategy. The <strong>100m</strong> is a pure acceleration event, typically over in a breathtaking 9 to 15 seconds. The <strong>200m</strong> combines explosive speed with the challenge of navigating a curve. Finally, the <strong>400m</strong> is often referred to as the "long sprint," requiring significant sprint endurance.</p>
+
+                    <div class="star-spotlight">
+                        <strong>Star Spotlight:</strong>
+                        <ul>
+                            <li><strong>Usain Bolt (Jamaica):</strong> The undisputed king of sprinting, holding the incredible 100m world record at an astounding 9.58 seconds.</li>
+                            <li><strong>Srinandi Sade (Indonesia):</strong> A rising star who holds the SEA Games U18 100m record with a remarkable time of 11.42 seconds, showcasing the talent emerging from Southeast Asia.</li>
+                        </ul>
+                    </div>
+
+                    <div class="image-placeholder">
+                        <img src="https://placehold.co/600x200/c7d2fe/3730a3?text=Split-screen+Video:+Bolt's+Win+vs.+Student+Sprinter" alt="Split-screen video comparing Usain Bolt's 2008 Olympic win with a student sprinter">
+                    </div>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">2. Step-by-Step Sprint Technique</h3>
+                    <p>Executing a perfect sprint requires precise technique from start to finish. Let's break down the key phases:</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">The Start (Crouch Position):</h4>
+                    <p>When you hear "Bersedia!" (Ready), place your strong foot forward and your hands in an inverted V-shape behind the starting line. At "Siap!" (Set), raise your hips, shifting your weight forward, preparing for explosive movement. Finally, at "Ya!" (Go!), drive your back knee powerfully up while simultaneously pushing off the front foot with maximum force.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Mid-Race Form:</h4>
+                    <p>During the <strong>Acceleration Phase</strong>, maintain a forward lean of approximately 45 degrees, pumping your arms violently with elbows bent at 90 degrees to generate momentum. As you transition to <strong>Top Speed</strong>, gradually rise to an upright position, ensuring your feet land directly under your hips to avoid overstriding, which can hinder efficiency. For the <strong>Finish</strong>, lean your chest forward aggressively as you approach the line, and crucially, never slow down early—sprint through the finish tape!</p>
+
+                    <div class="image-placeholder">
+                        <img src="https://placehold.co/600x200/c7d2fe/3730a3?text=Diagram:+Correct+vs.+Incorrect+Arm+Swing" alt="Diagram illustrating correct versus incorrect arm swing in sprinting">
+                    </div>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">3. Why Sprinting Transfers to Real Life</h3>
+                    <p>Sprinting is not just about running fast; it cultivates a range of skills applicable to everyday situations. Its <strong>Relevance</strong> is clear: the explosive power and quick reactions developed can help you catch a rapidly departing bus or enhance your performance in competitive gaming. The leg power gained is also incredibly beneficial for sports requiring jumping, such as basketball.</p>
+
+                    <p>Beyond physical benefits, sprinting serves as a significant <strong>Confidence Builder</strong>. The focused effort required to shave even 0.5 seconds off your 100m time teaches invaluable lessons in goal-crushing determination and disciplined focus. From an <strong>Academic Perk</strong> standpoint, engaging in anaerobic exercise like sprinting has been shown to sharpen memory and cognitive function, which can directly aid your performance in tests and academic tasks.</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">4. Your Sprint Training Blueprint</h3>
+                    <p>To safely and effectively develop your sprinting abilities, follow this beginner workout plan and prioritize safety essentials.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Beginner Workout:</h4>
+                    <p>Start every session with a dynamic <strong>Warm-up</strong>, including high knees for 30 meters, butt kicks for 30 meters, and skipping for 2 minutes. Progress to targeted <strong>Technique Drills</strong>: practice arm drives while seated, pumping your arms rapidly for 30 seconds. Incorporate acceleration runs, performing 5 repetitions of 30 meters at 80% effort to build speed. Conclude your workout with a <strong>Cool-down</strong>, consisting of a 400-meter walk followed by hamstring stretches.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Safety Essentials:</h4>
+                    <p>The right <strong>Footwear</strong> is crucial for sprinting; wear sprint spikes or grippy trainers, such as Adidas Adizero models, for optimal traction and support. Always train on an appropriate <strong>Surface</strong>, ideally a track, as concrete can place undue strain on your knees and increase injury risk. Most importantly, if you ever feel any "twinges" or sharp pain in your hamstring, stop immediately and rest to prevent more serious injury.</p>
+                </div>
+            `,
+            racewalk: `
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-4">Race-Walking: The Precision Power Walk</h2>
+                    <p class="text-lg text-gray-600 mb-6">This module is designed for Grade 7 Future Champions, introducing them to the unique and challenging world of race-walking.</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">1. What Makes Race-Walking Unique?</h3>
+                    <p>Race-walking is a fascinating athletic discipline that uniquely blends incredible speed with surgical precision. Unlike traditional running, where both feet can be airborne simultaneously, race-walking demands that one foot must always maintain contact with the ground. Furthermore, a crucial rule dictates that your knee must remain straight from the moment your heel strikes the ground until your body passes directly over it. Failure to adhere to these strict rules results in immediate disqualification by eagle-eyed judges, emphasizing the sport's technical demands.</p>
+
+                    <p>The sport is contested across various categories and distances. In the prestigious Olympic Games, men and women compete in the challenging 20 km event. For younger athletes, junior races typically cover distances of 5 km or 10 km, specifically designed for those under 18 years of age.</p>
+
+                    <div class="fun-fact">
+                        <strong>Fun Fact:</strong> Did you know that Japan’s Koki Ikeda achieved an astonishing feat by walking 20 km in just 1 hour, 17 minutes, and 25 seconds? This incredible time is faster than most people can cycle the same distance, highlighting the immense speed and endurance of elite race-walkers!
+                    </div>
+
+                    <div class="image-placeholder">
+                        <img src="https://placehold.co/600x200/c7d2fe/3730a3?text=Infographic:+Legal+vs.+Illegal+Strides" alt="Infographic showing legal vs. illegal race-walking strides with judge icons">
+                    </div>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">2. Step-by-Step Technique Mastery</h3>
+                    <p>Mastering race-walking technique involves a meticulous breakdown of each movement, ensuring efficiency and adherence to the rules. It can be divided into two primary phases:</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Phase 1: The Stride</h4>
+                    <p>The stride begins with a precise <strong>Heel Strike</strong>, where you land sharply on your heel with your leg fully straightened. Following this, you must seamlessly <strong>Roll & Push</strong> your foot from heel-to-toe, much like a wheel rolling forward, before pushing off powerfully with your toes. A key element for generating momentum is the <strong>Hip Drive</strong>; imagine rotating your hips forward with each step, as if you are gently nudging a ball with your hip bone. Complementing the leg action is the <strong>Arm Action</strong>: keep your elbows bent at a precise 90-degree angle and pump your arms straight forward and backward, ensuring they never cross your body, which can disrupt balance and efficiency.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Phase 2: Posture & Rhythm</h4>
+                    <p>Maintaining optimal posture is vital for both speed and injury prevention. Always <strong>Stand tall</strong>, keeping your chin up and your eyes focused approximately 20 meters ahead. The rhythm of race-walking is characterized by short, rapid steps, ideally aiming for a cadence of 180 or more steps per minute. This high frequency, combined with proper form, creates a powerful and efficient forward motion.</p>
+
+                    <div class="pro-tip">
+                        <strong>Pro Tip:</strong> To refine your technique, try practicing walking along a painted line. If you find yourself deviating from the line, it's a clear indication that your form needs further work and attention.
+                    </div>
+
+                    <div class="image-placeholder">
+                        <img src="https://placehold.co/600x200/c7d2fe/3730a3?text=Slow-motion+Video:+Hip+Rotation+Drill" alt="Slow-motion video of a hip rotation drill for race-walking">
+                    </div>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">3. Why This Matters to You</h3>
+                    <p>Engaging in race-walking offers numerous benefits that extend far beyond the track. Its <strong>Relevance</strong> to your daily life is significant: the endurance built through consistent training can greatly enhance your mental stamina, which is crucial for tackling long study sessions or challenging exams. Moreover, the focus on core engagement strengthens your body, beneficial for other sports like soccer.</p>
+
+                    <p>Race-walking also instills valuable <strong>Life Skills</strong>. The discipline required to maintain proper form and adhere to rules teaches patience and precision, qualities that are highly transferable to academic pursuits such as meticulous science labs or intricate art projects. Furthermore, from a <strong>Safety</strong> perspective, race-walking is often gentler on the joints compared to high-impact running, making it an ideal activity if you have previously experienced knee injuries or are looking for a lower-impact form of exercise.</p>
+
+                    <h3 class="text-2xl font-semibold text-blue-700">4. Training & Safety Guide</h3>
+                    <p>To begin your race-walking journey safely and effectively, follow this beginner routine and adhere to essential safety rules.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Beginner Routine:</h4>
+                    <p>Always start with a thorough <strong>Warm-up</strong>, including leg swings (forward and side) 20 repetitions per leg, and hip circles for 30 seconds in each direction. Follow this with specific <strong>Technique Drills</strong>: practice straight-leg walks for 5 sets of 50 meters, focusing on keeping the knee locked. Additionally, perform "hip sway" practice, walking with your hands on your hips to emphasize and exaggerate the hip rotation. Conclude your session with a proper <strong>Cool-down</strong>, such as calf stretches against a wall, holding each stretch for 20 seconds.</p>
+
+                    <h4 class="text-xl font-medium text-blue-600">Safety Rules:</h4>
+                    <p>Proper <strong>Footwear</strong> is paramount; invest in cushioned running shoes, such as Nike Air Zoom models, to provide adequate support and shock absorption. Consistent <strong>Hydration</strong> is also critical; remember to sip water every 10 minutes during your training sessions. Most importantly, never attempt to push through sharp shin pain; this is a significant red flag and indicates a potential injury that requires immediate rest and attention.</p>
+                </div>
+            `
         };
 
         // Quiz Questions (Preliminary & Post-activity)
@@ -946,35 +1004,45 @@
         document.getElementById('submitPostAssessment').addEventListener('click', () => submitAssessment('post-assessment-quiz'));
 
         // --- Learning Module Logic ---
+        const visualSummaryAndCallToAction = `
+            <div class="card">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4 text-center">Visual Summary: Track & Field Toolkit</h2>
+                <p class="text-center mb-6">Here's a quick overview of the key distinctions between race-walking and sprinting:</p>
+
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <strong>Race-Walking</strong>
+                        <p>🚶‍♀️</p>
+                        <p><strong>Key Rule:</strong> Zero flight phase – one foot always on the ground.</p>
+                        <p><strong>Core Drill:</strong> Focus on hip rotation to generate power.</p>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Sprinting</strong>
+                        <p>⚡</p>
+                        <p><strong>Key Rule:</strong> Strict lane discipline and start rules.</p>
+                        <p><strong>Core Drill:</strong> Practice "flying 30s" for acceleration.</p>
+                    </div>
+                </div>
+
+                <div class="call-to-action mt-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">Try This!</h3>
+                    <p class="text-lg mb-4">Grab your phone and film your sprint start or race-walk stride. Then, compare your technique to videos of Olympic athletes. Can you spot at least one specific area where you can improve your form?</p>
+                    <p class="text-xl italic font-semibold text-white">"These aren’t just sports—they’re life skills disguised as track events."</p>
+                    <p class="text-white text-right">- Ms. Maya, PE Coach</p>
+                    <p class="text-lg mt-4"><strong>Next Step:</strong> In our next class, pair up with a classmate! Time each other’s 50m sprint and 400m walk, and make sure to record your progress. Let's see those future champions shine!</p>
+                </div>
+            </div>
+        `;
+
         function displayLearningContent(category) {
             document.getElementById('learning-category-selection').classList.add('hidden');
             document.getElementById('learning-content').classList.remove('hidden');
 
             const contentDiv = document.getElementById('learning-content');
-            contentDiv.innerHTML = ''; // Clear previous content
+            contentDiv.innerHTML = learningContent[category]; // Set the main content
 
-            const categoryContent = learningContent[category];
-
-            // Iterate through the new content structure and display
-            for (const key in categoryContent) {
-                const section = categoryContent[key];
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'card p-4 mb-4'; // Add margin-bottom for spacing between sections
-                sectionDiv.innerHTML = `
-                    <h3 class="font-bold text-xl text-gray-800 mb-3">${section.title}</h3>
-                    <p class="text-gray-700">${section.content}</p>
-                    ${section.image ? `<img src="${section.image}" alt="${section.title} Image" class="mx-auto mt-4 rounded-lg shadow-sm w-full h-auto object-cover">` : ''}
-                    ${section.video && section.video !== "" ? `<div class="mt-4 bg-gray-100 p-4 rounded-lg text-center text-gray-500">
-                        <i class="fas fa-video fa-2x mb-2 text-gray-600"></i>
-                        <p class="text-sm">Instructional Video Placeholder: ${section.title}</p>
-                        <video controls class="mx-auto mt-2 mb-4 rounded-lg shadow-sm w-full h-auto">
-                            <source src="${section.video}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>` : ''}
-                `;
-                contentDiv.appendChild(sectionDiv);
-            }
+            // Append the common visual summary and call to action
+            contentDiv.innerHTML += visualSummaryAndCallToAction;
         }
 
         // --- Activity Challenge Logic ---
