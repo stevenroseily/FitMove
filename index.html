@@ -45,7 +45,23 @@
         /* Base styles for all buttons to ensure consistent shape, border, shadow, and transitions */
         .base-button-styles {
             display: block; /* Ensure it takes full width and stacks */
-            @apply font-semibold rounded-lg shadow-lg border-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-opacity-75 active:scale-95;
+            font-semibold; /* Tailwind font-semibold */
+            border-radius: 0.5rem; /* Explicitly set border-radius to match Tailwind's rounded-lg (8px) */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Explicit shadow */
+            border-width: 2px; /* Explicit border width */
+            transition: all 0.3s ease-in-out; /* Smooth transitions */
+            transform: translateY(0); /* Initial transform state */
+            outline: none; /* Remove default outline */
+            /* Hover and focus styles */
+            &:hover {
+                transform: translateY(-0.5);
+            }
+            &:focus {
+                box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Example focus ring color */
+            }
+            &:active {
+                transform: scale(0.95);
+            }
         }
 
         .card {
@@ -341,7 +357,15 @@
         <!-- 9. My Results Section (Optional, but good for tracking personal progress) -->
         <section id="my-results-section" class="section flex flex-col items-center p-6">
             <h2 class="text-2xl font-bold mb-6 text-gray-800">My Results</h2>
+            <div class="card p-6 w-full mb-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Assessment Scores</h3>
+                <div class="space-y-2 mb-4">
+                    <p class="text-md">Preliminary Assessment: <span id="preAssessmentScoreDisplay" class="font-semibold text-blue-600">N/A</span></p>
+                    <p class="text-md">Post-Activity Assessment: <span id="postAssessmentScoreDisplay" class="font-semibold text-blue-600">N/A</span></p>
+                </div>
+            </div>
             <div class="card p-6 w-full">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Challenge History</h3>
                 <div id="my-results-list" class="space-y-4">
                     <p class="text-gray-500 text-center">Loading your results...</p>
                     <!-- User's own results will be loaded here by JS -->
@@ -759,7 +783,7 @@
         // --- Assessment Logic ---
         async function handlePreAssessmentAccess() {
             if (userData.preAssessmentCompleted) {
-                showModal("Assessment Already Completed", "You have already completed the Preliminary Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                showModal("Assessment Already Completed", `You have already completed the Preliminary Assessment with a score of ${userData.preAssessmentScore || 'N/A'}.`, [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
                 return;
             }
             showModal(
@@ -777,7 +801,7 @@
 
         async function handlePostAssessmentAccess() {
             if (userData.postAssessmentCompleted) {
-                showModal("Assessment Already Completed", "You have already completed the Post-Activity Assessment.", [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
+                showModal("Assessment Already Completed", `You have already completed the Post-Activity Assessment with a score of ${userData.postAssessmentScore || 'N/A'}.`, [{text: "OK", class: "btn-primary", handler: () => showSection('home-menu-section')}]);
                 return;
             }
 
@@ -1267,9 +1291,32 @@
             }
 
             const myResultsList = document.getElementById('my-results-list');
-            myResultsList.innerHTML = '<p class="text-gray-500 text-center">Loading your results...</p>';
+            myResultsList.innerHTML = '<p class="text-gray-500 text-center">Loading your challenge results...</p>'; // Clear and set loading message
 
+            const preAssessmentScoreDisplay = document.getElementById('preAssessmentScoreDisplay');
+            const postAssessmentScoreDisplay = document.getElementById('postAssessmentScoreDisplay');
+
+            // Fetch user data to get assessment scores
             const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+            const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/users`, currentUserId);
+            try {
+                const userDocSnap = await getDoc(userDocRef);
+                if (userDocSnap.exists()) {
+                    const userProfile = userDocSnap.data();
+                    preAssessmentScoreDisplay.textContent = userProfile.preAssessmentScore !== undefined ? `${userProfile.preAssessmentScore}/${quizQuestions.length}` : 'Not Completed';
+                    postAssessmentScoreDisplay.textContent = userProfile.postAssessmentScore !== undefined ? `${userProfile.postAssessmentScore}/${quizQuestions.length}` : 'Not Completed';
+                } else {
+                    preAssessmentScoreDisplay.textContent = 'User data not found';
+                    postAssessmentScoreDisplay.textContent = 'User data not found';
+                }
+            } catch (e) {
+                console.error("Error loading assessment scores:", e);
+                preAssessmentScoreDisplay.textContent = 'Error loading';
+                postAssessmentScoreDisplay.textContent = 'Error loading';
+            }
+
+
+            // Fetch challenge results
             const q = query(collection(db, `artifacts/${appId}/public/data/challenges`), where('userId', '==', currentUserId));
 
             try {
@@ -1282,7 +1329,7 @@
                 // Sort by timestamp descending (most recent first)
                 myResults.sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis());
 
-                myResultsList.innerHTML = ''; // Clear loading message
+                myResultsList.innerHTML = ''; // Clear loading message for challenges
 
                 if (myResults.length === 0) {
                     myResultsList.innerHTML = '<p class="text-gray-500 text-center">You haven\'t completed any challenges yet. Go to Activity Challenge!</p>';
